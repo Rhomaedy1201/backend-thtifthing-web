@@ -292,7 +292,7 @@
               <div class="page-header float-right">
                 <div class="page-title">
                   <ol class="breadcrumb text-right">
-                    <li><a href="tambah-produk.html">Tambah Produk</a></li>
+                    
                   </ol>
                 </div>
               </div>
@@ -312,10 +312,12 @@
                             <strong class="card-title">Tabel Barang </strong>
                         </div>
                         <div class="card-body">
-                            <form>
-                                <input class="search" type="text" placeholder="Cari..." required>	
-                                <input class="button" type="button" value="Cari">		
-                              </form>
+                            <div class="input-group mb-3">
+                                <input type="text" name="icari"  value="<?= @$_POST['icari'] ?>"class="form-control" placeholder="Masukkan Kata Kunci!">
+                                <button class="btn btn-primary" name="isearch" type="submit">Cari</button>
+                                <button class="btn btn-danger" name="ihapus" type="submit">Clear</button>
+                            </div>
+                                <input class="btn btn-success" type="submit" value="submit" mb-3>
                             <table id="bootstrap-data-table" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
