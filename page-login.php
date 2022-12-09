@@ -38,7 +38,7 @@ include 'databases.php'
                 <div class="login-content">
                     <div class="login-logo">
                         <a href="index.html">
-                            <!-- <img class="align-content" src="images/logo.png" alt="" /> -->
+                            <img class="align-content" src="images/gothrif.png" alt="" />
                         </a>
                     </div>
                     <div class="login-form">
