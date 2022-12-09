@@ -5,7 +5,7 @@ session_start();
 include 'databases.php';
 // menangkap data yang dikirim dari form login
 $email = $_POST['email'];
-$kata_sandi = $_POST['kata_sandi'];
+$kata_sandi = md5($_POST['kata_sandi']);
 // menyeleksi data user dengan email dan kata_sandi yang sesuai
 $login = mysqli_query($koneksi, "select * from users where email='$email' and kata_sandi='$kata_sandi'  ");
 // menghitung jumlah data yang ditemukan
