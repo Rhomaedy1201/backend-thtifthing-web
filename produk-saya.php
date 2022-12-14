@@ -1,3 +1,6 @@
+<?php
+include('databases.php');
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -117,7 +120,7 @@
               <i class="menu-icon fa ti-briefcase"></i>Produk</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="produk-saya.html">Produk Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="produk-saya.php">Produk Saya</a>
               </li>
             </ul>
           </li>
@@ -312,7 +315,7 @@
             <div class="page-header float-right">
               <div class="page-title">
                 <ol class="breadcrumb text-right">
-                  <li><a href="produk-saya.html">Produk</a></li>
+                  <li><a href="produk-saya.php">Produk</a></li>
                   <li><a href="#">Toko</a></li>
                   <li class="active">Pengaturan</li>
                 </ol>
@@ -355,43 +358,83 @@
                       <th>Aksi</th>
                     </tr>
                   </thead>
+
+                  <?php
+
+                  //persiapan menamplikan data
+                  $no = 1;
+                  $tampil = mysqli_query($koneksi, "SELECT * FROM produk_user ORDER BY id_produk DESC");
+                  while ($data = mysqli_fetch_array($tampil)):
+                  ?>
+
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>
+                        <?= $no++ ?>
+                      </td>
+                      <td>
+                        <?='<img src="data:image/png;base64,' . base64_encode($data['gambar']) . '">' ?>
+                      </td>
+                      <td>
+                        <?= $data['nama_produk'] ?>
+                      </td>
+                      <td>
+                        <?= $data['harga'] ?>
+                      </td>
+                      <td>
+                        <?= $data['stok'] ?>
+                      </td>
+                      <td>
+                        <?= $data['kondisi'] ?>
+                      </td>
+                      <td>
+                        <?= $data['bahan'] ?>
+                      </td>
+                      <td>
+                        <?= $data['merek'] ?>
+                      </td>
+                      <td>
+                        <?= $data['ukuran'] ?>
+                      </td>
+                      <td>
+                        <?= $data['motif'] ?>
+                      </td>
+                      <td>
+                        <?= $data['berat'] ?>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                          data-target="#exampleModalCenter<?= $data['id_produk'] ?>">
+                          Launch
+                        </button>
+                      </td>
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModalCenter<?= $data['id_produk'] ?>" tabindex="-1"
+                        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Deskripsi</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>
+                                <strong><?= $data['deskripsi'] ?></strong>  
+                              </p>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
                       <td>
                         <a href="" class="btn btn-warning">Ubah</a>
                         <a href="" class="btn btn-danger">Hapus</a>
                       </td>
                     </tr>
-                    <tr>
-                      <td>1</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <a href="" class="btn btn-warning">Ubah</a>
-                        <a href="" class="btn btn-danger">Hapus</a>
-                      </td>
-                    </tr>
+                    <?php endwhile; ?>
+
                   </tbody>
                 </table>
                 <!-- Button trigger modal -->
@@ -407,44 +450,82 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         </button>
                       </div>
-                      <div class="modal-body">
-                        <form method="POST" action="aksi_crud.php">
+                      <form method="POST" action="aksi_crud.php">
+                        <div class="modal-body">
 
-                          <div class="form-group">
+
+                          <div class="mb-3">
                             <label class="form-label">Masukkan Gambar Produk</label>
-                            <input type="file" class="form-control-file" id="id_gambar">
+                            <input type="file" class="form-control-file" id="id_gambar" name="tgambar">
                           </div>
 
-                          <div class="form-group">
+                          <div class="mb-3">
                             <label class="form-label">Nama Produk</label>
                             <input type="text" class="form-control" id="id_nama_produk"
-                              placeholder="Silahkan masukkan nama produk">
+                              placeholder="Silahkan masukkan nama produk" name="tnama_produk">
                           </div>
 
-                          <div class="form-group">
+                          <div class="mb-3">
                             <label class="form-label">Harga</label>
                             <input type="number" class="form-control" id="id_harga"
-                              placeholder="Silahkan masukkan harga produk">
+                              placeholder="Silahkan masukkan harga produk" name="tharga">
                           </div>
 
                           <div class="form-group">
                             <label class="form-label">Stok Produk</label>
                             <input type="number" class="form-control" id="id_stok"
-                              placeholder="Silahkan masukkan stok produk">
+                              placeholder="Silahkan masukkan stok produk" name="tstok">
                           </div>
 
-                          <div class="form-group">
+                          <div class="mb-3">
                             <label class="form-label">Kondisi</label>
-                            <input type="text" class="form-control" id="id_kondisis"
-                              placeholder="Silahkan masukkan nama produk">
-                          </div>
+                            <select class="form-select" name="tkondisi">
+                              <option></option>
+                              <option value="Bagus">Bagus</option>
+                              <option value="Kekurangan">Kekurangan</option>
+                            </select>
 
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Simpan Data</button>
-                      </div>
+                            <div class="mb-3">
+                              <label class="form-label">Bahan</label>
+                              <input type="text" class="form-control" id="id_bahan"
+                                placeholder="Silahkan masukkan bahan produk" name="tbahan">
+                            </div>
+
+                            <div class="md-3">
+                              <label class="form-label">Merk</label>
+                              <input type="text" class="form-control" id="id_merk"
+                                placeholder="Silahkan masukkan merk produk" name="tmerk">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Ukuran</label>
+                              <input type="text" class="form-control" id="id_ukuran"
+                                placeholder="Silahkan masukkan ukuran produk" name="tukuran">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Motif</label>
+                              <input type="text" class="form-control" id="id_motif"
+                                placeholder="Silahkan masukkan motif produk" name="tmotif">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Berat</label>
+                              <input type="text" class="form-control" id="id_berat"
+                                placeholder="Silahkan masukkan berat produk" name="tberat">
+                            </div>
+
+                            <div class="mb-3">
+                              <label>Deskripsi</label>
+                              <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"></textarea>
+                            </div>
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="tsimpan">Simpan Data</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+                          </div>
+                      </form>
                     </div>
                   </div>
                 </div>
