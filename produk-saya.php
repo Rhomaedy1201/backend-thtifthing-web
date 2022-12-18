@@ -405,7 +405,7 @@ include('databases.php');
                       <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                           data-target="#exampleModalCenter<?= $data['id_produk'] ?>">
-                          Launch
+                          Lihat Deskripsi
                         </button>
                       </td>
                       <!-- Modal -->
@@ -522,7 +522,7 @@ include('databases.php');
 
                           </div>
                           <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="tsimpan">Simpan Data</button>
+                            <button type="submit" class="btn btn-primary" name="tsimpan">Simpan</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
                           </div>
                       </form>
