@@ -126,27 +126,6 @@ if (!isset($_SESSION['email'])) {
           </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa fa-bar-chart-o"></i>Data</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Produk Saya</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Tambah Produk Baru</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-comments"></i>Layanan Konsumen</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Asisten Chat</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-archive"></i>Toko</a>
             <ul class="sub-menu children dropdown-menu">
               <li>

@@ -91,7 +91,7 @@ session_start();
       <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="">
-            <a href="index.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
+            <a href="dashboard.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
           </li>
           <li class="menu-item-has-children dropdown">
@@ -116,27 +116,6 @@ session_start();
             <ul class="sub-menu children dropdown-menu">
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="#">Penghasilan Saya</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa fa-bar-chart-o"></i>Data</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Produk Saya</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Tambah Produk Baru</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-comments"></i>Layanan Konsumen</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Asisten Chat</a>
               </li>
             </ul>
           </li>
@@ -287,6 +266,7 @@ session_start();
       </div>
     </header>
     <!-- /#header -->
+
     <div class="breadcrumbs">
       <div class="breadcrumbs-inner">
         <div class="row m-0">
@@ -393,14 +373,14 @@ session_start();
                         <?= $data['berat'] ?>
                       </td>
                       <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                          data-target="#exampleModalCenter<?= $data['id_produk'] ?>">
+                        <button type="button" class="btn btn-link btn-sm" data-toggle="modal"
+                          data-target="#lihatDeskripsi<?= $data['id_produk'] ?>">
                           Lihat Deskripsi
                         </button>
                       </td>
                       <!-- Modal -->
-                      <div class="modal fade" id="exampleModalCenter<?= $data['id_produk'] ?>" tabindex="-1"
-                        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal fade" id="lihatDeskripsi<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -411,7 +391,7 @@ session_start();
                             </div>
                             <div class="modal-body">
                               <p>
-                                <strong><?= $data['deskripsi'] ?></strong>
+                                <?= $data['deskripsi'] ?>
                               </p>
                             </div>
 
@@ -419,8 +399,9 @@ session_start();
                         </div>
                       </div>
                       <td>
-                        <a href="" class="btn btn-warning">Ubah</a>
-                        <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>" class="btn btn-danger">Hapus</a>
+                        <a href="" class="btn btn-warning btn-sm">Ubah</a><br>
+                        <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>"
+                          class="btn btn-danger btn-sm">Hapus</a>
                       </td>
                     </tr>
                     <?php endwhile; ?>
@@ -539,12 +520,8 @@ session_start();
           </div>
 
         </div>
-
-
-
       </div>
     </div>
-  </div>
   </div>
 
 
