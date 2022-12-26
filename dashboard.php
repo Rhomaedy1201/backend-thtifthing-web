@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['email'])) {
   header("Location: index.php");
@@ -101,18 +101,6 @@ if (!isset($_SESSION['email'])) {
           </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-truck"></i>Pengiriman</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="fa ti-minus"></i><a href="#">Pengiriman Saya</a>
-              </li>
-              <li>
-                <i class="fa ti-minus"></i><a href="#">Pengaturan Pengiriman</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-clipboard"></i>Pesanan</a>
             <ul class="sub-menu children dropdown-menu">
               <li><i class="fa ti-minus"></i><a href="pesanan-saya.php">Pesanan Saya</a></li>
@@ -133,27 +121,6 @@ if (!isset($_SESSION['email'])) {
             <ul class="sub-menu children dropdown-menu">
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="#">Penghasilan Saya</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa fa-bar-chart-o"></i>Data</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Produk Saya</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Tambah Produk Baru</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-comments"></i>Layanan Konsumen</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Asisten Chat</a>
               </li>
             </ul>
           </li>
