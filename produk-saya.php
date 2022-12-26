@@ -1,5 +1,6 @@
 <?php
-include('databases.php');
+include('connect.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -359,8 +360,12 @@ include('databases.php');
                   <?php
 
                   //persiapan menamplikan data
+                  $e = $_SESSION['email'];
+                  $q = mysqli_query($conn, "SELECT * FROM users where email = '$e'");
+                  $row = mysqli_fetch_assoc($q);
+                  $id_us = $row['id_user'];
                   $no = 1;
-                  $tampil = mysqli_query($koneksi, "SELECT * FROM produk_user ORDER BY id_produk DESC");
+                  $tampil = mysqli_query($conn, "SELECT * FROM produk_user where id_user = '$id_us' ORDER BY id_produk DESC");
                   while ($data = mysqli_fetch_array($tampil)):
                   ?>
 
@@ -427,7 +432,7 @@ include('databases.php');
                       </div>
                       <td>
                         <a href="" class="btn btn-warning">Ubah</a>
-                        <a href="" class="btn btn-danger">Hapus</a>
+                        <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>" class="btn btn-danger" >Hapus</a>
                       </td>
                     </tr>
                     <?php endwhile; ?>
@@ -438,6 +443,7 @@ include('databases.php');
 
 
                 <!-- Modal -->
+
                 <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -447,31 +453,44 @@ include('databases.php');
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         </button>
                       </div>
-                      <form method="POST" action="aksi_crud.php">
+                      <form method="POST" action="tambah_produk_saya.php" enctype="multipart/form-data">
                         <div class="modal-body">
 
 
                           <div class="mb-3">
                             <label class="form-label">Masukkan Gambar Produk</label>
-                            <input type="file" class="form-control-file" id="id_gambar" name="tgambar">
+                            <input type="file" class="form-control-file" id="tgambar" name="tgambar">
                           </div>
 
                           <div class="mb-3">
                             <label class="form-label">Nama Produk</label>
-                            <input type="text" class="form-control" id="id_nama_produk"
+                            <input type="text" class="form-control" id="tnama_produk"
                               placeholder="Silahkan masukkan nama produk" name="tnama_produk">
                           </div>
 
                           <div class="mb-3">
                             <label class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="id_harga"
+                            <input type="number" class="form-control" id="tharga"
                               placeholder="Silahkan masukkan harga produk" name="tharga">
                           </div>
 
                           <div class="form-group">
                             <label class="form-label">Stok Produk</label>
-                            <input type="number" class="form-control" id="id_stok"
+                            <input type="number" class="form-control" id="tstok"
                               placeholder="Silahkan masukkan stok produk" name="tstok">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Kategori</label>
+                            <select class="form-select" name="tkategori_barang">
+                              <option></option>
+                              <?php 
+                               $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                               while ($data = mysqli_fetch_array($q)):
+                               ?>
+                              <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
+                              <?php endwhile; ?>
+                            </select>
                           </div>
 
                           <div class="mb-3">
@@ -481,28 +500,29 @@ include('databases.php');
                               <option value="Bagus">Bagus</option>
                               <option value="Kekurangan">Kekurangan</option>
                             </select>
+                          </div>
 
                             <div class="mb-3">
                               <label class="form-label">Bahan</label>
-                              <input type="text" class="form-control" id="id_bahan"
+                              <input type="text" class="form-control" id="tbahan"
                                 placeholder="Silahkan masukkan bahan produk" name="tbahan">
                             </div>
 
                             <div class="md-3">
                               <label class="form-label">Merk</label>
-                              <input type="text" class="form-control" id="id_merk"
+                              <input type="text" class="form-control" id="tmerk"
                                 placeholder="Silahkan masukkan merk produk" name="tmerk">
                             </div>
 
                             <div class="mb-3">
                               <label class="form-label">Ukuran</label>
-                              <input type="text" class="form-control" id="id_ukuran"
+                              <input type="text" class="form-control" id="tukuran"
                                 placeholder="Silahkan masukkan ukuran produk" name="tukuran">
                             </div>
 
                             <div class="mb-3">
                               <label class="form-label">Motif</label>
-                              <input type="text" class="form-control" id="id_motif"
+                              <input type="text" class="form-control" id="tmotif"
                                 placeholder="Silahkan masukkan motif produk" name="tmotif">
                             </div>
 
