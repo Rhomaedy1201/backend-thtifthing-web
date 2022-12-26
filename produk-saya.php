@@ -90,21 +90,9 @@ session_start();
     <nav class="navbar navbar-expand-sm navbar-default">
       <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active">
+          <li class="">
             <a href="index.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-truck"></i>Pengiriman</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="fa ti-minus"></i><a href="#">Pengiriman Saya</a>
-              </li>
-              <li>
-                <i class="fa ti-minus"></i><a href="#">Pengaturan Pengiriman</a>
-              </li>
-            </ul>
           </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,7 +101,7 @@ session_start();
               <li><i class="fa ti-minus"></i><a href="pesanan-saya.php">Pesanan Saya</a></li>
             </ul>
           </li>
-          <li class="menu-item-has-children dropdown">
+          <li class="menu-item-has-children active dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-briefcase"></i>Produk</a>
             <ul class="sub-menu children dropdown-menu">
@@ -432,7 +420,7 @@ session_start();
                       </div>
                       <td>
                         <a href="" class="btn btn-warning">Ubah</a>
-                        <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>" class="btn btn-danger" >Hapus</a>
+                        <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>" class="btn btn-danger">Hapus</a>
                       </td>
                     </tr>
                     <?php endwhile; ?>
@@ -484,10 +472,10 @@ session_start();
                             <label class="form-label">Kategori</label>
                             <select class="form-select" name="tkategori_barang">
                               <option></option>
-                              <?php 
-                               $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
-                               while ($data = mysqli_fetch_array($q)):
-                               ?>
+                              <?php
+                              $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                              while ($data = mysqli_fetch_array($q)):
+                              ?>
                               <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
                               <?php endwhile; ?>
                             </select>
@@ -502,46 +490,46 @@ session_start();
                             </select>
                           </div>
 
-                            <div class="mb-3">
-                              <label class="form-label">Bahan</label>
-                              <input type="text" class="form-control" id="tbahan"
-                                placeholder="Silahkan masukkan bahan produk" name="tbahan">
-                            </div>
-
-                            <div class="md-3">
-                              <label class="form-label">Merk</label>
-                              <input type="text" class="form-control" id="tmerk"
-                                placeholder="Silahkan masukkan merk produk" name="tmerk">
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Ukuran</label>
-                              <input type="text" class="form-control" id="tukuran"
-                                placeholder="Silahkan masukkan ukuran produk" name="tukuran">
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Motif</label>
-                              <input type="text" class="form-control" id="tmotif"
-                                placeholder="Silahkan masukkan motif produk" name="tmotif">
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Berat</label>
-                              <input type="text" class="form-control" id="id_berat"
-                                placeholder="Silahkan masukkan berat produk" name="tberat">
-                            </div>
-
-                            <div class="mb-3">
-                              <label>Deskripsi</label>
-                              <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"></textarea>
-                            </div>
-
+                          <div class="mb-3">
+                            <label class="form-label">Bahan</label>
+                            <input type="text" class="form-control" id="tbahan"
+                              placeholder="Silahkan masukkan bahan produk" name="tbahan">
                           </div>
-                          <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="tsimpan">Simpan</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+
+                          <div class="md-3">
+                            <label class="form-label">Merk</label>
+                            <input type="text" class="form-control" id="tmerk"
+                              placeholder="Silahkan masukkan merk produk" name="tmerk">
                           </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Ukuran</label>
+                            <input type="text" class="form-control" id="tukuran"
+                              placeholder="Silahkan masukkan ukuran produk" name="tukuran">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Motif</label>
+                            <input type="text" class="form-control" id="tmotif"
+                              placeholder="Silahkan masukkan motif produk" name="tmotif">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Berat</label>
+                            <input type="text" class="form-control" id="id_berat"
+                              placeholder="Silahkan masukkan berat produk" name="tberat">
+                          </div>
+
+                          <div class="mb-3">
+                            <label>Deskripsi</label>
+                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"></textarea>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary" name="tsimpan">Simpan</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+                        </div>
                       </form>
                     </div>
                   </div>
