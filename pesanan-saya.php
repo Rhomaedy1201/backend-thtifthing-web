@@ -332,7 +332,7 @@
                       <tr>
                         <th class="align-top" style="width: 45%;">Produk</th>
                         <th class="align-top" style="width: 20%;">Jumlah Harus Dibayar</th>
-                        <th class="align-top" style="width: 10%;">Jasa Kirim</th>
+                        <th class="align-top" style="width: 10%;">Status</th>
                         <th class="align-top" style="width: 10%;">Tanggal Pembelian</th>
                         <th class="align-top" style="width: 15%;">Aksi</th>
                       </tr>
@@ -367,7 +367,7 @@
                             </div>
                           </td>
                           <td class="align-top" style="width: 17%;">Rp45.000</td>
-                          <td class="align-top" style="width: 10%;">Pos Regular</td>
+                          <td class="align-top" style="width: 10%;">Belum dibayar</td>
                           <td class="align-top" style="width: 10%;">12-Des-2022</td>
                           <td class="align-top" style="width: 15%;">
                             <a href="#" style="font-size: 5;" data-toggle="modal" class="text-info"
@@ -414,23 +414,20 @@
                     <thead class="ct-start">
                       <tr>
                         <th class="align-top">Alamat</th>
+                        <th class="align-top">Jenis Pengiriman</th>
                         <th class="align-top">Ongkir</th>
                         <th class="align-top">No Resi</th>
                         <th class="align-top">Bukti Pembayaran</th>
-                        <th class="align-top">Status</th>
                         <th class="align-top">Aksi</th>
                       </tr>
                     </thead>
                     <tr>
-                      <td>asdad asdlkjlas asldkalsdas lkas</td>
-                      <td>asda</td>
-                      <td>asdasdka;sldk</td>
-                      <td>asd</td>
-                      <td>
-                        <!-- <span class="badge badge-pending">Belum dibayar</span> -->
-                        <span class="badge badge-success">Sudah dibayar</span>
-                      </td>
-                      <td>
+                      <td class="align-top">detail_jalan,<br>detail_patokan<br>provinsi, kota<br>POS kode_pos</td>
+                      <td class="align-top">JNT Regular</td>
+                      <td class="align-top">Rp8.000</td>
+                      <td class="align-top">JT0923873666</td>
+                      <td class="align-top">Foto</td>
+                      <td class="align-top">
                         <button type="button" id="btn-update-resi" class="btn btn-outline-warning btn-sm"><i
                             class="fa fa-edit"></i>&nbsp;
                           Update Resi</button>
