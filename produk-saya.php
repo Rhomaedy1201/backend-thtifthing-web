@@ -90,7 +90,7 @@ include('databases.php');
       <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="active">
-            <a href="index.html"><i class="menu-icon fa ti-dashboard"></i>Dashboard
+            <a href="index.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
           </li>
           <li class="menu-item-has-children dropdown">
@@ -109,10 +109,7 @@ include('databases.php');
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-clipboard"></i>Pesanan</a>
             <ul class="sub-menu children dropdown-menu">
-              <li><i class="fa ti-minus"></i><a href="#">Pesanan Saya</a></li>
-              <li>
-                <i class="fa ti-minus"></i><a href="#">Pembatalan/Pengembalian</a>
-              </li>
+              <li><i class="fa ti-minus"></i><a href="pesanan-saya.php">Pesanan Saya</a></li>
             </ul>
           </li>
           <li class="menu-item-has-children dropdown">
@@ -421,7 +418,7 @@ include('databases.php');
                             </div>
                             <div class="modal-body">
                               <p>
-                                <strong><?= $data['deskripsi'] ?></strong>  
+                                <strong><?= $data['deskripsi'] ?></strong>
                               </p>
                             </div>
 
