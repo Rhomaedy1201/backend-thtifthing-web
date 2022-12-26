@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Ela Admin - HTML5 Admin Template</title>
+  <title>Go-Thrift</title>
   <meta name="description" content="Ela Admin - HTML5 Admin Template" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -332,7 +332,7 @@
                       <tr>
                         <th class="align-top" style="width: 45%;">Produk</th>
                         <th class="align-top" style="width: 20%;">Jumlah Harus Dibayar</th>
-                        <th class="align-top" style="width: 10%;">Jasa Kirim</th>
+                        <th class="align-top" style="width: 10%;">Status</th>
                         <th class="align-top" style="width: 10%;">Tanggal Pembelian</th>
                         <th class="align-top" style="width: 15%;">Aksi</th>
                       </tr>
@@ -367,12 +367,13 @@
                             </div>
                           </td>
                           <td class="align-top" style="width: 17%;">Rp45.000</td>
-                          <td class="align-top" style="width: 10%;">Pos Regular</td>
+                          <td class="align-top" style="width: 10%;">Belum dibayar</td>
                           <td class="align-top" style="width: 10%;">12-Des-2022</td>
-                          <td class="align-top" style="width: 15%;"><a href="#" style="font-size: 5;">
+                          <td class="align-top" style="width: 15%;">
+                            <a href="#" style="font-size: 5;" data-toggle="modal" class="text-info"
+                              id="btnRincianPesanan" data-target="#rincianPesanan">
                               <i class="ti-receipt"></i>
                               Periksa Rician</a>
-                          </td>
                         </tr>
                       </table>
 
@@ -384,14 +385,81 @@
               </div>
             </div>
           </div>
-
-
         </div>
       </div><!-- .animated -->
     </div><!-- .content -->
 
+    <!-- periksa rincian -->
+    <!-- modals -->
+    <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fc-center fade" id="rincianPesanan" data-backdrop="static" tabindex="-1" role="dialog"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Rincian pesanan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="col-lg-20">
+              <div class="card">
+
+                <!-- data table modals -->
+                <!-- <div class="table-stats bg-light rounded"> -->
+                <div class="table-stats order-table ov-h bg-light">
+                  <table class="table ct-start">
+                    <thead class="ct-start">
+                      <tr>
+                        <th class="align-top">Alamat</th>
+                        <th class="align-top">Jenis Pengiriman</th>
+                        <th class="align-top">Ongkir</th>
+                        <th class="align-top">No Resi</th>
+                        <th class="align-top">Bukti Pembayaran</th>
+                        <th class="align-top">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tr>
+                      <td class="align-top">detail_jalan,<br>detail_patokan<br>provinsi, kota<br>POS kode_pos</td>
+                      <td class="align-top">JNT Regular</td>
+                      <td class="align-top">Rp8.000</td>
+                      <td class="align-top">JT0923873666</td>
+                      <td class="align-top">Foto</td>
+                      <td class="align-top">
+                        <button type="button" id="btn-update-resi" class="btn btn-outline-warning btn-sm"><i
+                            class="fa fa-edit"></i>&nbsp;
+                          Update Resi</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <!-- end content table modals -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btn-terimaPembayaran">Terima Pembayaran
+              dan Proses
+              Barang</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </div>
+
+  <!-- modals script -->
+  <script>
+    function disableBtn() {
+      document.getElementById('btn-update-resi').disabled = false;
+    }
+  </script>
+
   <!-- /#right-panel -->
 
   <!-- Right Panel -->
@@ -420,6 +488,7 @@
   <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
   <script src="assets/js/init/fullcalendar-init.js"></script>
+
 </body>
 
 </html>
