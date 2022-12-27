@@ -343,7 +343,7 @@ session_start();
                           }
                         </style>
                         <?php 
-                          $sql2 = mysqli_query($conn, "SELECT transaksi.id_alamat_user,nama_produk, harga, status, 
+                          $sql2 = mysqli_query($conn, "SELECT id_alamat_user,nama_produk, harga, status, 
                                                         tanggal_beli, detail_transaksi.jumlah 
                                                         FROM produk_user INNER JOIN transaksi INNER JOIN detail_transaksi 
                                                         ON produk_user.id_produk = detail_transaksi.id_produk 
@@ -365,8 +365,8 @@ session_start();
                           <td class="align-top" style="width: 10%;"><?= $data2['status'] ?></td>
                           <td class="align-top" style="width: 10%;"><?= date('d-m-Y', strtotime($data2['tanggal_beli'])) ?></td>
                           <td class="align-top" style="width: 15%;">
-                            <a href="#" style="font-size: 5;" data-toggle="modal" class="text-info"
-                              id="btnRincianPesanan" data-target="#rincianPesanan">
+                            <a href="" style="font-size: 5;" data-toggle="modal" class="text-info"
+                              id="btnRincianPesanan" data-target="#rincianPesanan<?= $data2['id_alamat_user'] ?>">
                               <i class="ti-receipt"></i>
                               Periksa Rician</a>
                         </tr>
@@ -390,7 +390,16 @@ session_start();
     <!-- modals -->
     <!-- Modal -->
     <!-- Modal -->
-    <div class="modal fc-center fade" id="rincianPesanan" data-backdrop="static" tabindex="-1" role="dialog"
+    <?php 
+    $sql = mysqli_query($conn, "SELECT transaksi.id_transaksi,transaksi.id_alamat_user, transaksi.status, bukti_pembayaran,no_resi, harga_pengiriman, nama_pengiriman, detail_jalan, 
+                              detail_patokan, provinsi, kota, kode_pos
+                              FROM detail_alamat_user INNER JOIN transaksi INNER JOIN metode_pengiriman 
+                              ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user 
+                              AND transaksi.id_pengiriman = metode_pengiriman.id_pengiriman");
+
+    while ($data2 = mysqli_fetch_array($sql)):
+     ?>
+    <div class="modal fc-center fade" id="rincianPesanan<?= $data2['id_alamat_user'] ?>" data-backdrop="static" tabindex="-1" role="dialog"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -403,6 +412,7 @@ session_start();
           <div class="modal-body">
             <div class="col-lg-20">
               <div class="card">
+                  <form method="post" action="update_pembayaran.php?id=<?= $data2['id_transaksi'] ?>">
 
                 <!-- data table modals -->
                 <!-- <div class="table-stats bg-light rounded"> -->
@@ -419,16 +429,22 @@ session_start();
                       </tr>
                     </thead>
                     <tr>
-                      <td class="align-top">detail_jalan,<br>detail_patokan<br>provinsi, kota<br>POS kode_pos</td>
-                      <td class="align-top">JNT Regular</td>
-                      <td class="align-top">Rp8.000</td>
+                      <td class="align-top"><?= $data2['detail_jalan'] ?>,<br><?= $data2['detail_patokan'] ?><br><?= $data2['provinsi'] ?>, <?= $data2['kota'] ?><br>POS <?= $data2['kode_pos'] ?></td>
+                      <td class="align-top"><?= $data2['nama_pengiriman'] ?></td>
+                      <td class="align-top">Rp<?= $data2['harga_pengiriman'] ?></td>
                       <td class="align-top">JT0923873666</td>
-                      <td class="align-top">Foto</td>
-                      <td class="align-top">
+                      <td class="align-top"><?='<img src="data:image/png;base64,' . base64_encode($data2['bukti_pembayaran']) . '">'?></td>
+                      <?php 
+                        if ($data2['status'] == "belum dibayar") {
+                          
+                        }elseif ($data2['status'] == "sudah bayar") {
+                       ?>
+                       <td class="align-top">
                         <button type="button" id="btn-update-resi" class="btn btn-outline-warning btn-sm"><i
                             class="fa fa-edit"></i>&nbsp;
                           Update Resi</button>
                       </td>
+                      <?php } ?>
                     </tr>
                   </table>
                 </div>
@@ -439,14 +455,15 @@ session_start();
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary btn-terimaPembayaran">Terima Pembayaran
+            <button type="submit" class="btn btn-primary btn-terimaPembayaran" name="up">Terima Pembayaran
               dan Proses
               Barang</button>
           </div>
+          </form>
         </div>
       </div>
     </div>
-
+<?php endwhile; ?>
 
   </div>
 
