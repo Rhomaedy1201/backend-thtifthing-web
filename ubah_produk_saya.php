@@ -15,7 +15,6 @@ $id_kategori = $row2['id_kategori'];
 $nama_produk = $_POST['tnama_produk'];
 $harga = $_POST['tharga'];
 $stok = $_POST['tstok'];
-$gambar = addslashes(file_get_contents($_FILES['tgambar']['tmp_name']));
 $kondisi = $_POST['tkondisi'];
 $bahan = $_POST['tbahan'];
 $merek = $_POST['tmerk'];
@@ -24,6 +23,8 @@ $motif = $_POST['tmotif'];
 $berat = $_POST['tberat'];
 $deskripsi = $_POST['tdeskripsi'];
 
-$sql3 = mysqli_query($conn, "UPDATE `produk_user` SET `id_kategori`='$id_kategori',`nama_produk`='$nama_produk',`harga`='$harga',`stok`='$stok',`gambar`='$gambar',`kondisi`='$kondisi',`bahan`='$bahan',`merek`='$merek',`ukuran`='$ukuran',`motif`='$motif',`berat`='$berat',`deskripsi`='$deskripsi' WHERE id_produk = '$id_produk'");
+$sql3 = mysqli_query($conn, "UPDATE `produk_user` SET `id_kategori`='$id_kategori',`nama_produk`='$nama_produk',`harga`='$harga',`stok`='$stok',`kondisi`='$kondisi',`bahan`='$bahan',`merek`='$merek',`ukuran`='$ukuran',`motif`='$motif',`berat`='$berat',`deskripsi`='$deskripsi' WHERE id_produk = '$id_produk'");
+
+header('location:produk-saya.php');
 
  ?>

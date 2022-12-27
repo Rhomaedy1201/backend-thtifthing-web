@@ -435,7 +435,7 @@ session_start();
                           <div class="mb-3">
                             <label class="form-label">Nama Produk</label>
                             <input type="text" class="form-control" id="tnama_produk"
-                              placeholder="Silahkan masukkan nama produk" name="tnama_produk" value="<?= $data['kondisi'] ?>">
+                              placeholder="Silahkan masukkan nama produk" name="tnama_produk" value="<?= $data['nama_produk'] ?>">
                           </div>
 
                           <div class="mb-3">
@@ -456,15 +456,15 @@ session_start();
                                <?php
                                $id = $data['id_kategori'];
                               $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
-                              while ($data = mysqli_fetch_array($q)):
+                              while ($data2 = mysqli_fetch_array($q)):
                               ?>
-                              <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
+                              <option value="<?= $data2['nama_kategori'] ?>"><?= $data2['nama_kategori'] ?></option>
                               <?php endwhile; ?>
                               <?php
                               $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
-                              while ($data = mysqli_fetch_array($q)):
+                              while ($data1 = mysqli_fetch_array($q)):
                               ?>
-                              <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
+                              <option value="<?= $data1['nama_kategori'] ?>"><?= $data1['nama_kategori'] ?></option>
                               <?php endwhile; ?>
                             </select>
                           </div>
@@ -480,36 +480,36 @@ session_start();
                           <div class="mb-3">
                             <label class="form-label">Bahan</label>
                             <input type="text" class="form-control" id="tbahan"
-                              placeholder="Silahkan masukkan bahan produk" name="tbahan">
+                              placeholder="Silahkan masukkan bahan produk" name="tbahan" value="<?= $data['bahan'] ?>">
                           </div>
 
                           <div class="md-3">
                             <label class="form-label">Merk</label>
                             <input type="text" class="form-control" id="tmerk"
-                              placeholder="Silahkan masukkan merk produk" name="tmerk">
+                              placeholder="Silahkan masukkan merk produk" name="tmerk" value="<?= $data['merek'] ?>">
                           </div>
 
                           <div class="mb-3">
                             <label class="form-label">Ukuran</label>
                             <input type="text" class="form-control" id="tukuran"
-                              placeholder="Silahkan masukkan ukuran produk" name="tukuran">
+                              placeholder="Silahkan masukkan ukuran produk" name="tukuran" value="<?= $data['ukuran'] ?>">
                           </div>
 
                           <div class="mb-3">
                             <label class="form-label">Motif</label>
                             <input type="text" class="form-control" id="tmotif"
-                              placeholder="Silahkan masukkan motif produk" name="tmotif">
+                              placeholder="Silahkan masukkan motif produk" name="tmotif" value="<?= $data['motif'] ?>">
                           </div>
 
                           <div class="mb-3">
                             <label class="form-label">Berat</label>
                             <input type="text" class="form-control" id="id_berat"
-                              placeholder="Silahkan masukkan berat produk" name="tberat">
+                              placeholder="Silahkan masukkan berat produk" name="tberat" value="<?= $data['berat'] ?>">
                           </div>
 
                           <div class="mb-3">
                             <label>Deskripsi</label>
-                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"></textarea>
+                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"><?= $data['deskripsi'] ?></textarea>
                           </div>
                         </div>
                         <div class="modal-footer">
