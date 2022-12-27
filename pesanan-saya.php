@@ -1,8 +1,8 @@
-<?php 
+<?php
 include 'connect.php';
 session_start();
 
- ?>
+?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -131,7 +131,7 @@ session_start();
                 <i class="menu-icon fa ti-minus"></i><a href="#">Profil Toko</a>
               </li>
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Laporan Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
               </li>
             </ul>
           </li>
@@ -313,21 +313,21 @@ session_start();
                   </table>
                 </div>
                 <div>
-                  <?php 
+                  <?php
 
-                    $sql = mysqli_query($conn, "SELECT DISTINCT id_alamat_user FROM transaksi");
-                    while ($data = mysqli_fetch_array($sql)):
-                   ?>
+                  $sql = mysqli_query($conn, "SELECT DISTINCT id_alamat_user FROM transaksi");
+                  while ($data = mysqli_fetch_array($sql)):
+                  ?>
                   <!-- item transaksi atau pesanan saya -->
-                  <?php 
-                  $id = $data['id_alamat_user'];
+                  <?php
+                    $id = $data['id_alamat_user'];
                     $sql1 = mysqli_query($conn, "SELECT DISTINCT detail_alamat_user.nama_lengkap_kontak_alamat, 
                                                   detail_alamat_user.id_alamat_user 
                                                   FROM transaksi INNER JOIN detail_alamat_user 
                                                   ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user
                                                   WHERE transaksi.id_alamat_user = '$id'");
                     while ($data1 = mysqli_fetch_array($sql1)):
-                   ?>
+                  ?>
                   <div class="card">
                     <div class="card-header bg-flat-color-2">
                       <strong class="card-title color-white">
@@ -342,15 +342,15 @@ session_start();
                             font-size: 13px;
                           }
                         </style>
-                        <?php 
-                          $sql2 = mysqli_query($conn, "SELECT transaksi.id_alamat_user,nama_produk, harga, status, 
+                        <?php
+                      $sql2 = mysqli_query($conn, "SELECT transaksi.id_alamat_user,nama_produk, harga, status, 
                                                         tanggal_beli, detail_transaksi.jumlah 
                                                         FROM produk_user INNER JOIN transaksi INNER JOIN detail_transaksi 
                                                         ON produk_user.id_produk = detail_transaksi.id_produk 
                                                         AND transaksi.id_transaksi = detail_transaksi.id_transaksi
                                                         WHERE id_alamat_user = '$id'");
-                          while ($data2 = mysqli_fetch_array($sql2)):
-                         ?>
+                      while ($data2 = mysqli_fetch_array($sql2)):
+                        ?>
                         <tr>
                           <td class="align-top" style="width: 100%; display: flex; justify-content: space-between; ">
                             <div class="item" style="display: flex;">

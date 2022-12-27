@@ -130,7 +130,7 @@ session_start();
                 <i class="menu-icon fa ti-minus"></i><a href="#">Profil Toko</a>
               </li>
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Laporan Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
               </li>
             </ul>
           </li>
@@ -411,9 +411,9 @@ session_start();
                 </table>
                 <!-- Button trigger modal -->
                 <?php
-                  $tampil = mysqli_query($conn, "SELECT * FROM produk_user");
-                  while ($data = mysqli_fetch_array($tampil)):
-                  ?>
+                $tampil = mysqli_query($conn, "SELECT * FROM produk_user");
+                while ($data = mysqli_fetch_array($tampil)):
+                ?>
                 <div class="modal fade" id="ubah<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -423,7 +423,8 @@ session_start();
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         </button>
                       </div>
-                      <form method="POST" action="ubah_produk_saya.php?id=<?= $data['id_produk'] ?>" enctype="multipart/form-data">
+                      <form method="POST" action="ubah_produk_saya.php?id=<?= $data['id_produk'] ?>"
+                        enctype="multipart/form-data">
                         <div class="modal-body">
 
 
@@ -435,7 +436,8 @@ session_start();
                           <div class="mb-3">
                             <label class="form-label">Nama Produk</label>
                             <input type="text" class="form-control" id="tnama_produk"
-                              placeholder="Silahkan masukkan nama produk" name="tnama_produk" value="<?= $data['nama_produk'] ?>">
+                              placeholder="Silahkan masukkan nama produk" name="tnama_produk"
+                              value="<?= $data['nama_produk'] ?>">
                           </div>
 
                           <div class="mb-3">
@@ -453,16 +455,16 @@ session_start();
                           <div class="mb-3">
                             <label class="form-label">Kategori</label>
                             <select class="form-select" name="tkategori_barang">
-                               <?php
-                               $id = $data['id_kategori'];
-                              $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
-                              while ($data2 = mysqli_fetch_array($q)):
-                              ?>
+                              <?php
+                  $id = $data['id_kategori'];
+                  $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
+                  while ($data2 = mysqli_fetch_array($q)):
+                               ?>
                               <option value="<?= $data2['nama_kategori'] ?>"><?= $data2['nama_kategori'] ?></option>
                               <?php endwhile; ?>
                               <?php
-                              $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
-                              while ($data1 = mysqli_fetch_array($q)):
+                  $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                  while ($data1 = mysqli_fetch_array($q)):
                               ?>
                               <option value="<?= $data1['nama_kategori'] ?>"><?= $data1['nama_kategori'] ?></option>
                               <?php endwhile; ?>
@@ -492,7 +494,8 @@ session_start();
                           <div class="mb-3">
                             <label class="form-label">Ukuran</label>
                             <input type="text" class="form-control" id="tukuran"
-                              placeholder="Silahkan masukkan ukuran produk" name="tukuran" value="<?= $data['ukuran'] ?>">
+                              placeholder="Silahkan masukkan ukuran produk" name="tukuran"
+                              value="<?= $data['ukuran'] ?>">
                           </div>
 
                           <div class="mb-3">
@@ -509,7 +512,8 @@ session_start();
 
                           <div class="mb-3">
                             <label>Deskripsi</label>
-                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"><?= $data['deskripsi'] ?></textarea>
+                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi"
+                              rows="3"><?= $data['deskripsi'] ?></textarea>
                           </div>
                         </div>
                         <div class="modal-footer">
