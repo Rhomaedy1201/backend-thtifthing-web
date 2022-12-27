@@ -1,3 +1,9 @@
+<?php 
+include 'connect.php';
+session_start();
+
+ ?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -307,12 +313,25 @@
                   </table>
                 </div>
                 <div>
+                  <?php 
 
+                    $sql = mysqli_query($conn, "SELECT DISTINCT id_alamat_user FROM transaksi");
+                    while ($data = mysqli_fetch_array($sql)):
+                   ?>
                   <!-- item transaksi atau pesanan saya -->
+                  <?php 
+                  $id = $data['id_alamat_user'];
+                    $sql1 = mysqli_query($conn, "SELECT DISTINCT detail_alamat_user.nama_lengkap_kontak_alamat, 
+                                                  detail_alamat_user.id_alamat_user 
+                                                  FROM transaksi INNER JOIN detail_alamat_user 
+                                                  ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user
+                                                  WHERE transaksi.id_alamat_user = '$id'");
+                    while ($data1 = mysqli_fetch_array($sql1)):
+                   ?>
                   <div class="card">
                     <div class="card-header bg-flat-color-2">
                       <strong class="card-title color-white">
-                        Akbar</strong>
+                        <?= $data1['nama_lengkap_kontak_alamat'] ?></strong>
                     </div>
                     <div class="table table-item table-stats">
 
@@ -323,31 +342,42 @@
                             font-size: 13px;
                           }
                         </style>
+                        <?php 
+                          $sql2 = mysqli_query($conn, "SELECT transaksi.id_alamat_user,nama_produk, harga, status, 
+                                                        tanggal_beli, detail_transaksi.jumlah 
+                                                        FROM produk_user INNER JOIN transaksi INNER JOIN detail_transaksi 
+                                                        ON produk_user.id_produk = detail_transaksi.id_produk 
+                                                        AND transaksi.id_transaksi = detail_transaksi.id_transaksi
+                                                        WHERE id_alamat_user = '$id'");
+                          while ($data2 = mysqli_fetch_array($sql2)):
+                         ?>
                         <tr>
                           <td class="align-top" style="width: 100%; display: flex; justify-content: space-between; ">
                             <div class="item" style="display: flex;">
                               <img class="rounded image-table" src="images/avatar/1.jpg" alt="">
-                              <h6 style="font-weight: 500;">Baju Bekas Berkualitas</h6>
+                              <h6 style="font-weight: 500;"><?= $data2['nama_produk'] ?></h6>
                             </div>
                             <div>
-                              1x
+                              <p><?= $data2['jumlah'] ?>x</p>
                             </div>
                           </td>
-                          <td class="align-top" style="width: 17%;">Rp45.000</td>
-                          <td class="align-top" style="width: 10%;">Belum dibayar</td>
-                          <td class="align-top" style="width: 10%;">12-Des-2022</td>
+                          <td class="align-top" style="width: 17%;">Rp<?= $data2['harga'] ?></td>
+                          <td class="align-top" style="width: 10%;"><?= $data2['status'] ?></td>
+                          <td class="align-top" style="width: 10%;"><?= date('d-m-Y', strtotime($data2['tanggal_beli'])) ?></td>
                           <td class="align-top" style="width: 15%;">
                             <a href="#" style="font-size: 5;" data-toggle="modal" class="text-info"
                               id="btnRincianPesanan" data-target="#rincianPesanan">
                               <i class="ti-receipt"></i>
                               Periksa Rician</a>
                         </tr>
+                        <?php endwhile; ?>
                       </table>
 
                     </div>
                   </div>
                   <!-- akhir per item -->
-
+                  <?php endwhile; ?>
+                  <?php endwhile; ?>
                 </div>
               </div>
             </div>

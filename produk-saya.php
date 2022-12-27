@@ -399,7 +399,8 @@ session_start();
                         </div>
                       </div>
                       <td>
-                        <a href="" class="btn btn-warning btn-sm">Ubah</a><br>
+                        <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
+                          data-target="#ubah<?= $data['id_produk'] ?>">Ubah</a><br>
                         <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>"
                           class="btn btn-danger btn-sm">Hapus</a>
                       </td>
@@ -409,7 +410,118 @@ session_start();
                   </tbody>
                 </table>
                 <!-- Button trigger modal -->
+                <?php
+                  $tampil = mysqli_query($conn, "SELECT * FROM produk_user");
+                  while ($data = mysqli_fetch_array($tampil)):
+                  ?>
+                <div class="modal fade" id="ubah<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Tambah Produk</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                      </div>
+                      <form method="POST" action="ubah_produk_saya.php?id=<?= $data['id_produk'] ?>" enctype="multipart/form-data">
+                        <div class="modal-body">
 
+
+                          <div class="mb-3">
+                            <label class="form-label">Masukkan Gambar Produk</label>
+                            <input type="file" class="form-control-file" id="tgambar" name="tgambar">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Nama Produk</label>
+                            <input type="text" class="form-control" id="tnama_produk"
+                              placeholder="Silahkan masukkan nama produk" name="tnama_produk" value="<?= $data['kondisi'] ?>">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Harga</label>
+                            <input type="number" class="form-control" id="tharga"
+                              placeholder="Silahkan masukkan harga produk" name="tharga" value="<?= $data['harga'] ?>">
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">Stok Produk</label>
+                            <input type="number" class="form-control" id="tstok"
+                              placeholder="Silahkan masukkan stok produk" name="tstok" value="<?= $data['stok'] ?>">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Kategori</label>
+                            <select class="form-select" name="tkategori_barang">
+                               <?php
+                               $id = $data['id_kategori'];
+                              $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
+                              while ($data = mysqli_fetch_array($q)):
+                              ?>
+                              <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
+                              <?php endwhile; ?>
+                              <?php
+                              $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                              while ($data = mysqli_fetch_array($q)):
+                              ?>
+                              <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
+                              <?php endwhile; ?>
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label">Kondisi</label>
+                            <select class="form-select" name="tkondisi">
+                              <option value="<?= $data['kondisi'] ?>"><?= $data['kondisi'] ?></option>
+                              <option value="Bagus">Bagus</option>
+                              <option value="Kekurangan">Kekurangan</option>
+                            </select>
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Bahan</label>
+                            <input type="text" class="form-control" id="tbahan"
+                              placeholder="Silahkan masukkan bahan produk" name="tbahan">
+                          </div>
+
+                          <div class="md-3">
+                            <label class="form-label">Merk</label>
+                            <input type="text" class="form-control" id="tmerk"
+                              placeholder="Silahkan masukkan merk produk" name="tmerk">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Ukuran</label>
+                            <input type="text" class="form-control" id="tukuran"
+                              placeholder="Silahkan masukkan ukuran produk" name="tukuran">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Motif</label>
+                            <input type="text" class="form-control" id="tmotif"
+                              placeholder="Silahkan masukkan motif produk" name="tmotif">
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Berat</label>
+                            <input type="text" class="form-control" id="id_berat"
+                              placeholder="Silahkan masukkan berat produk" name="tberat">
+                          </div>
+
+                          <div class="mb-3">
+                            <label>Deskripsi</label>
+                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi" rows="3"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary" name="tsimpan">Simpan</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <?php endwhile; ?>
 
                 <!-- Modal -->
 
