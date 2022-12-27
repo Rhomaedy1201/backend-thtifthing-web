@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'connect.php';
 
 $id_produk = $_GET['id'];
@@ -27,4 +27,4 @@ $sql3 = mysqli_query($conn, "UPDATE `produk_user` SET `id_kategori`='$id_kategor
 
 header('location:produk-saya.php');
 
- ?>
+?>
