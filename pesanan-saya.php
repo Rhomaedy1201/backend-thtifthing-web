@@ -297,7 +297,13 @@ session_start();
                 <strong class="card-title">Data Pesanan</strong>
               </div>
               <div class="card-body bg-white">
-                <h5>12 Pesanan</h5>
+                <h5><?php 
+
+                  $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi");
+                  $pesanan = mysqli_fetch_array($q);
+                  echo $pesanan['COUNT(id_transaksi)'];
+
+                 ?> Pesanan</h5>
                 <br>
                 <div class="table-stats bg-light rounded">
                   <table class="table">
@@ -343,8 +349,7 @@ session_start();
                           }
                         </style>
                         <?php 
-                          $sql2 = mysqli_query($conn, "SELECT id_alamat_user,nama_produk, harga, status, 
-                                                        tanggal_beli, detail_transaksi.jumlah 
+                          $sql2 = mysqli_query($conn, "SELECT transaksi.id_transaksi,id_alamat_user, produk_user.nama_produk, produk_user.harga, transaksi.status, produk_user.gambar, tanggal_beli, detail_transaksi.jumlah 
                                                         FROM produk_user INNER JOIN transaksi INNER JOIN detail_transaksi 
                                                         ON produk_user.id_produk = detail_transaksi.id_produk 
                                                         AND transaksi.id_transaksi = detail_transaksi.id_transaksi
@@ -354,7 +359,8 @@ session_start();
                         <tr>
                           <td class="align-top" style="width: 100%; display: flex; justify-content: space-between; ">
                             <div class="item" style="display: flex;">
-                              <img class="rounded image-table" src="images/avatar/1.jpg" alt="">
+                              <img class="rounded image-table" src="" alt="" >
+                              <p><?='<img src="data:image/png;base64,' . base64_encode($data2['gambar']) . '">' ?></p>
                               <h6 style="font-weight: 500;"><?= $data2['nama_produk'] ?></h6>
                             </div>
                             <div>
@@ -366,7 +372,7 @@ session_start();
                           <td class="align-top" style="width: 10%;"><?= date('d-m-Y', strtotime($data2['tanggal_beli'])) ?></td>
                           <td class="align-top" style="width: 15%;">
                             <a href="" style="font-size: 5;" data-toggle="modal" class="text-info"
-                              id="btnRincianPesanan" data-target="#rincianPesanan<?= $data2['id_alamat_user'] ?>">
+                              id="btnRincianPesanan" data-target="#rincianPesanan<?= $data2['id_transaksi'] ?>">
                               <i class="ti-receipt"></i>
                               Periksa Rician</a>
                         </tr>
@@ -397,9 +403,9 @@ session_start();
                               ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user 
                               AND transaksi.id_pengiriman = metode_pengiriman.id_pengiriman");
 
-    while ($data2 = mysqli_fetch_array($sql)):
+    while ($data3 = mysqli_fetch_array($sql)):
      ?>
-    <div class="modal fc-center fade" id="rincianPesanan<?= $data2['id_alamat_user'] ?>" data-backdrop="static" tabindex="-1" role="dialog"
+    <div class="modal fc-center fade" id="rincianPesanan<?= $data3['id_transaksi'] ?>" data-backdrop="static" tabindex="-1" role="dialog"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -412,7 +418,7 @@ session_start();
           <div class="modal-body">
             <div class="col-lg-20">
               <div class="card">
-                  <form method="post" action="update_pembayaran.php?id=<?= $data2['id_transaksi'] ?>">
+                  <form method="post" action="update_pembayaran.php?id=<?= $data3['id_transaksi'] ?>">
 
                 <!-- data table modals -->
                 <!-- <div class="table-stats bg-light rounded"> -->
@@ -420,7 +426,7 @@ session_start();
                   <table class="table ct-start">
                     <thead class="ct-start">
                       <tr>
-                        <th class="align-top">Alamat</th>
+                        <th class="align-top"><?php echo $data3['id_transaksi'] ?>Alamat</th>
                         <th class="align-top">Jenis Pengiriman</th>
                         <th class="align-top">Ongkir</th>
                         <th class="align-top">No Resi</th>
@@ -429,20 +435,20 @@ session_start();
                       </tr>
                     </thead>
                     <tr>
-                      <td class="align-top"><?= $data2['detail_jalan'] ?>,<br><?= $data2['detail_patokan'] ?><br><?= $data2['provinsi'] ?>, <?= $data2['kota'] ?><br>POS <?= $data2['kode_pos'] ?></td>
-                      <td class="align-top"><?= $data2['nama_pengiriman'] ?></td>
-                      <td class="align-top">Rp<?= $data2['harga_pengiriman'] ?></td>
+                      <td class="align-top"><?= $data3['detail_jalan'] ?>,<br><?= $data3['detail_patokan'] ?><br><?= $data3['provinsi'] ?>, <?= $data3['kota'] ?><br>POS <?= $data3['kode_pos'] ?></td>
+                      <td class="align-top"><?= $data3['nama_pengiriman'] ?></td>
+                      <td class="align-top">Rp<?= $data3['harga_pengiriman'] ?></td>
                       <td class="align-top">JT0923873666</td>
-                      <td class="align-top"><?='<img src="data:image/png;base64,' . base64_encode($data2['bukti_pembayaran']) . '">'?></td>
+                      <td class="align-top"><?='<img src="data:image/png;base64,' . base64_encode($data3['bukti_pembayaran']) . '">'?></td>
                       <?php 
-                        if ($data2['status'] == "belum dibayar") {
+                        if ($data3['status'] == "belum dibayar") {
                           
-                        }elseif ($data2['status'] == "sudah bayar") {
+                        }elseif ($data3['status'] == "Diproses") {
                        ?>
                        <td class="align-top">
-                        <button type="button" id="btn-update-resi" class="btn btn-outline-warning btn-sm"><i
+                        <a href="update_resi.php?id=<?= $data3['id_transaksi'] ?>" id="btn-update-resi" class="btn btn-outline-warning btn-sm"><i
                             class="fa fa-edit"></i>&nbsp;
-                          Update Resi</button>
+                          Update Resi</a>
                       </td>
                       <?php } ?>
                     </tr>

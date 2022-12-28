@@ -291,7 +291,7 @@ session_start();
                       <td>Rp<?= $data['harga'] ?></td>
                       <td><?= date('d-m-Y', strtotime($data['tanggal_beli'])) ?></td>
                       <td><?= date('d-m-Y', strtotime($data['tanggal_terima'])) ?></td>
-                      <td>Rp.<?php $j = (int)$data['jumlah'] * (int)$data['harga']; echo $j; ?></td>
+                      <td>Rp<?php $j = (int)$data['jumlah'] * (int)$data['harga']; echo $j; ?></td>
                       <td>Bank <?= $data['nama_bank'] ?></td>
                       <td><?= $data['status'] ?></td>
                     </tr>
