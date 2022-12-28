@@ -237,6 +237,11 @@ session_start();
     </div>
     <!-- /#header -->
     <!-- Content -->
+                <?php 
+                  $email = $_SESSION['email'];
+                  $q = mysqli_query($conn, "SELECT * FROM `detail_alamat_user` JOIN `users` ON detail_alamat_user.id_user = users.id_user WHERE email = '$email'");
+                  while ($data = mysqli_fetch_array($q)):
+                 ?>
     <div class="content">
       <div class="animated fadeIn">
         <div class="row">
@@ -249,13 +254,12 @@ session_start();
                   <i class="fa"></i>
                 </div>
                 <div class="fa wtt-mark"></div>
-
                 <div class="media">
                   <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
                     src="images/admin.jpg">
                   <div class="media-body">
-                    <h2 class="text-white display-6">Muhammad Rhomaedi</h2>
-                    <p class="text-light">rhomaedy@gmail.com</p>
+                    <h2 class="text-white display-6"><?= $data['nama_lengkap'] ?></h2>
+                    <p class="text-light"><?= $data['email'] ?></p>
                   </div>
                 </div>
               </div>
@@ -263,23 +267,23 @@ session_start();
 
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <a href="#"> No Hp : 0812737213677</a>
+                  <a href="#"> No Hp : <?= $data['no_hp_kontak_alamat'] ?></a>
                 </li>
                 <li class="list-group-item">
-                  <a href="#">Status : Penjual </a>
+                  <a href="#">Status : <?= $data['status'] ?> </a>
                 </li>
                 <li class="list-group-item">
-                  <a href="#">Alamat : Jawa Timur, Jember, 68123 -- (alamat ngambil dari table detail_alamat_user) </a>
+                  <a href="#">Alamat : <?= $data['provinsi'] ?>, <?= $data['detail_jalan'] ?>, <?= $data['kota'] ?> <?= $data['kecamatan'] ?>, <?= $data['kode_pos'] ?> </a>
                 </li>
               </ul>
 
 
             </section>
           </div>
-
         </div>
       </div><!-- .animated -->
     </div><!-- .content -->
+          <?php endwhile; ?>
 
 
   </div>
