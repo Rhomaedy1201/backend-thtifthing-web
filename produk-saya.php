@@ -115,7 +115,10 @@ session_start();
               <i class="menu-icon ti-wallet"></i>Keuangan</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Penghasilan Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="penghasilan-saya.php">Penghasilan Saya</a>
+              </li>
+              <li>
+                <i class="menu-icon fa ti-minus"></i><a href="rekening-bank.php">Rekening Bank</a>
               </li>
             </ul>
           </li>
