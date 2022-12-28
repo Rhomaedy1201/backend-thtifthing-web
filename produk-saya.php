@@ -124,10 +124,7 @@ session_start();
               <i class="menu-icon fa ti-archive"></i>Toko</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Penilaian Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Profil Toko</a>
+                <i class="menu-icon fa ti-minus"></i><a href="profile-toko.php">Profil Toko</a>
               </li>
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
@@ -140,9 +137,6 @@ session_start();
             <ul class="sub-menu children dropdown-menu">
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="#">Pengaturan Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Akun</a>
               </li>
             </ul>
           </li>
@@ -459,7 +453,7 @@ session_start();
                   $id = $data['id_kategori'];
                   $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
                   while ($data2 = mysqli_fetch_array($q)):
-                               ?>
+                              ?>
                               <option value="<?= $data2['nama_kategori'] ?>"><?= $data2['nama_kategori'] ?></option>
                               <?php endwhile; ?>
                               <?php

@@ -217,7 +217,7 @@ session_start();
           <div class="col-sm-4">
             <div class="page-header float-left">
               <div class="page-title">
-                <h1>Laporan Saya</h1>
+                <h1>Profile Toko</h1>
               </div>
             </div>
           </div>
@@ -241,74 +241,58 @@ session_start();
       <div class="animated fadeIn">
         <div class="row">
 
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <strong class="card-title">Data Table</strong>
-              </div>
-              <div class="card-body">
-                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th class="align-top">No</th>
-                      <th class="align-top">Nama Pembeli</th>
-                      <!-- <th class="align-top">Alamat</th> -->
-                      <th class="align-top">Nama barang</th>
-                      <th class="align-top">Jumlah beli</th>
-                      <th class="align-top">harga</th>
-                      <th class="align-top">Tanggal beli</th>
-                      <th class="align-top">Tanggal terima</th>
-                      <th class="align-top">Total pembayaran</th>
-                      <th class="align-top">Pembayaran</th>
-                      <th class="align-top">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <!-- <td>System Architect</td> -->
-                      <td>Agus</td>
-                      <td>Jaket jet</td>
-                      <td>1x</td>
-                      <td>Rp75.000</td>
-                      <td>12-01-2022</td>
-                      <td>15-01-2022</td>
-                      <td>Rp75.000</td>
-                      <td>Bank BRI</td>
-                      <td>Diterima</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <!-- <td>System Architect</td> -->
-                      <td>Bagas</td>
-                      <td>Jaket jet</td>
-                      <td>1x</td>
-                      <td>Rp75.000</td>
-                      <td>12-01-2022</td>
-                      <td>15-01-2022</td>
-                      <td>Rp75.000</td>
-                      <td>Bank BRI</td>
-                      <td>Diterima</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <!-- <td>System Architect</td> -->
-                      <td>Tono</td>
-                      <td>Kaos</td>
-                      <td>1x</td>
-                      <td>Rp75.000</td>
-                      <td>12-01-2022</td>
-                      <td>15-01-2022</td>
-                      <td>Rp75.000</td>
-                      <td>Bank BRI</td>
-                      <td>Diterima</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
 
+          <div class="col-md-12">
+            <section class="card">
+              <div class="twt-feed blue-bg">
+                <div class="corner-ribon black-ribon">
+                  <i class="fa"></i>
+                </div>
+                <div class="fa wtt-mark"></div>
+
+                <div class="media">
+                  <a href="#">
+                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
+                      src="images/admin.jpg">
+                  </a>
+                  <div class="media-body">
+                    <h2 class="text-white display-6">Jim Doe</h2>
+                    <p class="text-light">Project Manager</p>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="weather-category twt-category">
+                <ul>
+                  <li class="active">
+                    <h5>750</h5>
+                    Tweets
+                  </li>
+                  <li>
+                    <h5>865</h5>
+                    Following
+                  </li>
+                  <li>
+                    <h5>3645</h5>
+                    Followers
+                  </li>
+                </ul>
+              </div>
+              <div class="twt-write col-sm-12">
+                <textarea placeholder="Write your Tweet and Enter" rows="1" class="form-control t-text-area"></textarea>
+              </div>
+              <footer class="twt-footer">
+                <a href="#"><i class="fa fa-camera"></i></a>
+                <a href="#"><i class="fa fa-map-marker"></i></a>
+                New Castle, UK
+                <span class="pull-right">
+                  32
+                </span>
+              </footer>
+            </section>
+          </div>
 
         </div>
       </div><!-- .animated -->

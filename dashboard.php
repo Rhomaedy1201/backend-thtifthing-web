@@ -129,10 +129,7 @@ if (!isset($_SESSION['email'])) {
               <i class="menu-icon fa ti-archive"></i>Toko</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Penilaian Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Profil Toko</a>
+                <i class="menu-icon fa ti-minus"></i><a href="profile-toko.php">Profil Toko</a>
               </li>
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
@@ -145,9 +142,6 @@ if (!isset($_SESSION['email'])) {
             <ul class="sub-menu children dropdown-menu">
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="#">Pengaturan Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Akun</a>
               </li>
             </ul>
           </li>
@@ -624,6 +618,7 @@ if (!isset($_SESSION['email'])) {
             </div><!-- .row -->
           </div><!-- .animated -->
         </div><!-- .content -->
+
       </div>
     </div>
   </div>
