@@ -107,10 +107,7 @@ session_start();
               <i class="menu-icon fa ti-briefcase"></i>Produk</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="penghasilan-saya.php">Penghasilan Saya</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="rekening-bank.php">Rekening Bank</a>
+                <i class="menu-icon fa ti-minus"></i><a href="produk-saya.php">Produk Saya</a>
               </li>
             </ul>
           </li>
@@ -119,7 +116,10 @@ session_start();
               <i class="menu-icon ti-wallet"></i>Keuangan</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Penghasilan Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="penghasilan-saya.php">Penghasilan Saya</a>
+              </li>
+              <li>
+                <i class="menu-icon fa ti-minus"></i><a href="rekening-bank.php">Rekening Bank</a>
               </li>
             </ul>
           </li>
