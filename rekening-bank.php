@@ -246,28 +246,39 @@ session_start();
     </div>
     <!-- /#header -->
     <!-- Content -->
+    
     <div class="content">
       <div class="animated fadeIn">
         <div class="row">
-
+          <?php 
+            $email = $_SESSION['email'];
+            $getid = mysqli_query($conn, "SELECT id_user FROM `users` where email = '$email' ");
+            $gid = mysqli_fetch_array($getid);
+            $id = $gid['id_user'];
+            $q = mysqli_query($conn, "SELECT * FROM `rekening_bank` where id_user = '$id' ");
+            while ($data = mysqli_fetch_array($q)):
+           ?>
           <div class="container-card">
+            <a href="#" data-toggle="modal" data-target="#editCard<?= $data['id_rekening'] ?>">
             <header>
               <span class="logo-card">
-                <h5>BANK BRI</ h5>
+                <h5>BANK <?= strtoupper($data['nama_bank']) ?></ h5>
               </span>
             </header>
 
             <div class="card-details">
               <div class="name-number">
                 <h6>Card Number</h6>
-                <h5 class="number">8050 5040 2030 3020</h5>
-                <h5 class="name">Prem Kumar Shahi</h5>
+                <h5 class="number"><?= $data['no_rekening'] ?></h5>
+                <h5 class="name"><?= $data['nama_pemilik_bank'] ?></h5>
               </div>
               <div class="valid-date">
               </div>
             </div>
+            </a>
           </div>
-
+        <?php endwhile; ?>
+        
           <div class="container-card">
             <a href="#" data-toggle="modal" data-target="#inputCard">
               <header>
@@ -287,7 +298,7 @@ session_start();
               </div>
             </a>
           </div>
-
+        
 
         </div>
       </div><!-- .animated -->
@@ -298,6 +309,7 @@ session_start();
 
 
   <!-- Modal -->
+<form method="post" action="tambah_rekening.php">
   <div class="modal fade" id="inputCard" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -317,19 +329,19 @@ session_start();
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
-                      <input type="text" id="username" name="nameBank" placeholder="Nama Bank" class="form-control">
+                      <input type="text" id="username" name="namaBank" placeholder="Nama Bank" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-code-fork"></i></div>
-                      <input type="email" id="email" name="noRekening" placeholder="No Rekening" class="form-control">
+                      <input type="number" id="email" name="noRekening" placeholder="No Rekening" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-user-circle"></i></div>
-                      <input type="password" id="password" name="namaPemilik" placeholder="Nama Pemilik"
+                      <input type="text" id="password" name="namaPemilik" placeholder="Nama Pemilik"
                         class="form-control">
                     </div>
                   </div>
@@ -340,16 +352,69 @@ session_start();
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-          <button type="button" class="btn btn-primary">Simpan Bank</button>
+          <button type="submit" class="btn btn-primary">Simpan Bank</button>
         </div>
       </div>
     </div>
   </div>
+</form>
 
 
-
-
-
+<!-- edit -->
+<?php 
+$q1 = mysqli_query($conn, "SELECT * FROM `rekening_bank`");
+while ($data1 = mysqli_fetch_array($q1)):
+ ?>
+<form method="post" action="ubah_rekening.php?id=<?= $data1['id_rekening'] ?>">
+  <div class="modal fade" id="editCard<?= $data1['id_rekening'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-body card-block">
+                <form action="#" method="post" class="">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
+                      <input type="text" id="username" value="<?= $data1['nama_bank'] ?>" name="namaBank" placeholder="Nama Bank" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-code-fork"></i></div>
+                      <input type="number" id="email" value="<?= $data1['no_rekening'] ?>" name="noRekening" placeholder="No Rekening" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-user-circle"></i></div>
+                      <input type="text" id="password" value="<?= $data1['nama_pemilik_bank'] ?>" name="namaPemilik" placeholder="Nama Pemilik"
+                        class="form-control">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          <button type="submit" class="btn btn-primary">Ubah Bank</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<?php endwhile; ?>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
