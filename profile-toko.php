@@ -240,11 +240,11 @@ session_start();
     </div>
     <!-- /#header -->
     <!-- Content -->
-                <?php 
-                  $email = $_SESSION['email'];
-                  $q = mysqli_query($conn, "SELECT * FROM `detail_alamat_user` JOIN `users` ON detail_alamat_user.id_user = users.id_user WHERE email = '$email'");
-                  while ($data = mysqli_fetch_array($q)):
-                 ?>
+    <?php
+    $email = $_SESSION['email'];
+    $q = mysqli_query($conn, "SELECT * FROM `detail_alamat_user` JOIN `users` ON detail_alamat_user.id_user = users.id_user WHERE email = '$email'");
+    while ($data = mysqli_fetch_array($q)):
+    ?>
     <div class="content">
       <div class="animated fadeIn">
         <div class="row">
@@ -261,7 +261,13 @@ session_start();
                   <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
                     src="images/admin.jpg">
                   <div class="media-body">
-                    <h2 class="text-white display-6"><?= $data['nama_lengkap'] ?></h2>
+                    <h2 class="text-white display-6"><?= $data['nama_lengkap'] ?>
+                      <?php if ($data['status'] == "penjual") { ?>
+
+                      <i class="fa fa-check-circle-o"></i>
+
+                      <?php } ?>
+                    </h2>
                     <p class="text-light"><?= $data['email'] ?></p>
                   </div>
                 </div>
@@ -286,7 +292,7 @@ session_start();
         </div>
       </div><!-- .animated -->
     </div><!-- .content -->
-          <?php endwhile; ?>
+    <?php endwhile; ?>
 
 
   </div>
