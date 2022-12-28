@@ -114,7 +114,10 @@ session_start();
               <i class="menu-icon ti-wallet"></i>Keuangan</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Penghasilan Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="penghasilan-saya.php">Penghasilan Saya</a>
+              </li>
+              <li>
+                <i class="menu-icon fa ti-minus"></i><a href="rekening-bank.php">Rekening Bank</a>
               </li>
             </ul>
           </li>
@@ -264,18 +267,18 @@ session_start();
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
-                      $no = 0;
+                    <?php
+                    $no = 0;
 
-                      $sql = mysqli_query($conn, "SELECT detail_alamat_user.nama_lengkap_kontak_alamat, produk_user.nama_produk, detail_transaksi.jumlah, produk_user.harga, transaksi.tanggal_beli, transaksi.tanggal_terima, rekening_bank.nama_bank, transaksi.status
+                    $sql = mysqli_query($conn, "SELECT detail_alamat_user.nama_lengkap_kontak_alamat, produk_user.nama_produk, detail_transaksi.jumlah, produk_user.harga, transaksi.tanggal_beli, transaksi.tanggal_terima, rekening_bank.nama_bank, transaksi.status
                         FROM detail_alamat_user
                         JOIN transaksi ON detail_alamat_user.id_alamat_user = transaksi.id_transaksi
                         JOIN detail_transaksi ON transaksi.id_transaksi = detail_transaksi.id_transaksi
                         JOIN produk_user ON detail_transaksi.id_produk = produk_user.id_produk
                         JOIN rekening_bank ON transaksi.id_rekening = rekening_bank.id_rekening");
-                      while ($data = mysqli_fetch_array($sql)):
-                        $no++;
-                     ?>
+                    while ($data = mysqli_fetch_array($sql)):
+                      $no++;
+                    ?>
                     <tr>
                       <td><?= $no ?></td>
                       <!-- <td>System Architect</td> -->
@@ -285,7 +288,8 @@ session_start();
                       <td>Rp<?= $data['harga'] ?></td>
                       <td><?= date('d-m-Y', strtotime($data['tanggal_beli'])) ?></td>
                       <td><?= date('d-m-Y', strtotime($data['tanggal_terima'])) ?></td>
-                      <td>Rp<?php $j = (int)$data['jumlah'] * (int)$data['harga']; echo $j; ?></td>
+                      <td>Rp<?php $j = (int) $data['jumlah'] * (int) $data['harga'];
+                      echo $j; ?></td>
                       <td>Bank <?= $data['nama_bank'] ?></td>
                       <td><?= $data['status'] ?></td>
                     </tr>

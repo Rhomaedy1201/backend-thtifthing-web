@@ -35,6 +35,12 @@ session_start();
   <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
+  <!-- card bank -->
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link rel="stylesheet" href="https://pattern.kivan-works.com/fonts/kredit.css">
+  <link rel="stylesheet" href="assets/css/style-card-bank.css" />
+
   <style>
     body {
       background-color: #f1f2f7;
@@ -109,7 +115,7 @@ session_start();
               </li>
             </ul>
           </li>
-          <li class="menu-item-has-children dropdown">
+          <li class="menu-item-has-children active dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon ti-wallet"></i>Keuangan</a>
             <ul class="sub-menu children dropdown-menu">
@@ -121,7 +127,7 @@ session_start();
               </li>
             </ul>
           </li>
-          <li class="menu-item-has-children active dropdown">
+          <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-archive"></i>Toko</a>
             <ul class="sub-menu children dropdown-menu">
@@ -220,7 +226,7 @@ session_start();
           <div class="col-sm-4">
             <div class="page-header float-left">
               <div class="page-title">
-                <h1>Profile Toko</h1>
+                <h1>Rekening Bank</h1>
               </div>
             </div>
           </div>
@@ -244,41 +250,44 @@ session_start();
       <div class="animated fadeIn">
         <div class="row">
 
+          <div class="container-card">
+            <header>
+              <span class="logo-card">
+                <h5>BANK BRI</ h5>
+              </span>
+            </header>
 
-          <div class="col-md-12">
-            <section class="card">
-              <div class="twt-feed blue-bg">
-                <div class="corner-ribon black-ribon">
-                  <i class="fa"></i>
+            <div class="card-details">
+              <div class="name-number">
+                <h6>Card Number</h6>
+                <h5 class="number">8050 5040 2030 3020</h5>
+                <h5 class="name">Prem Kumar Shahi</h5>
+              </div>
+              <div class="valid-date">
+              </div>
+            </div>
+          </div>
+
+          <div class="container-card">
+            <a href="#" data-toggle="modal" data-target="#inputCard">
+              <header>
+                <span class="logo-card">
+                  <h5>Klik untuk menambah bank</h5>
+                </span>
+              </header>
+
+              <div class="card-details">
+                <div class="name-number">
+                  <h6>Card Number</h6>
+                  <h5 class="number">****************</h5>
+                  <h5 class="name">.........</h5>
                 </div>
-                <div class="fa wtt-mark"></div>
-
-                <div class="media">
-                  <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
-                    src="images/admin.jpg">
-                  <div class="media-body">
-                    <h2 class="text-white display-6">Muhammad Rhomaedi</h2>
-                    <p class="text-light">rhomaedy@gmail.com</p>
-                  </div>
+                <div class="valid-date">
                 </div>
               </div>
-
-
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <a href="#"> No Hp : 0812737213677</a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Status : Penjual </a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Alamat : Jawa Timur, Jember, 68123 -- (alamat ngambil dari table detail_alamat_user) </a>
-                </li>
-              </ul>
-
-
-            </section>
+            </a>
           </div>
+
 
         </div>
       </div><!-- .animated -->
@@ -288,7 +297,54 @@ session_start();
   </div>
 
 
-
+  <!-- Modal -->
+  <div class="modal fade" id="inputCard" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-body card-block">
+                <form action="#" method="post" class="">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
+                      <input type="text" id="username" name="nameBank" placeholder="Nama Bank" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-code-fork"></i></div>
+                      <input type="email" id="email" name="noRekening" placeholder="No Rekening" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-user-circle"></i></div>
+                      <input type="password" id="password" name="namaPemilik" placeholder="Nama Pemilik"
+                        class="form-control">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          <button type="button" class="btn btn-primary">Simpan Bank</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -301,24 +357,6 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
   <script src="assets/js/main.js"></script>
 
-
-  <script src="assets/js/lib/data-table/datatables.min.js"></script>
-  <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-  <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-  <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-  <script src="assets/js/lib/data-table/jszip.min.js"></script>
-  <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-  <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-  <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-  <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-  <script src="assets/js/init/datatables-init.js"></script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('#bootstrap-data-table-export').DataTable();
-    });
-  </script>
 
 </body>
 
