@@ -251,46 +251,29 @@ session_start();
                 <div class="fa wtt-mark"></div>
 
                 <div class="media">
-                  <a href="#">
-                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
-                      src="images/admin.jpg">
-                  </a>
+                  <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
+                    src="images/admin.jpg">
                   <div class="media-body">
-                    <h2 class="text-white display-6">Jim Doe</h2>
-                    <p class="text-light">Project Manager</p>
+                    <h2 class="text-white display-6">Muhammad Rhomaedi</h2>
+                    <p class="text-light">rhomaedy@gmail.com</p>
                   </div>
                 </div>
+              </div>
 
 
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <a href="#"> No Hp : 0812737213677</a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#">Status : Penjual </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#">Alamat : Jawa Timur, Jember, 68123 -- (alamat ngambil dari table detail_alamat_user) </a>
+                </li>
+              </ul>
 
-              </div>
-              <div class="weather-category twt-category">
-                <ul>
-                  <li class="active">
-                    <h5>750</h5>
-                    Tweets
-                  </li>
-                  <li>
-                    <h5>865</h5>
-                    Following
-                  </li>
-                  <li>
-                    <h5>3645</h5>
-                    Followers
-                  </li>
-                </ul>
-              </div>
-              <div class="twt-write col-sm-12">
-                <textarea placeholder="Write your Tweet and Enter" rows="1" class="form-control t-text-area"></textarea>
-              </div>
-              <footer class="twt-footer">
-                <a href="#"><i class="fa fa-camera"></i></a>
-                <a href="#"><i class="fa fa-map-marker"></i></a>
-                New Castle, UK
-                <span class="pull-right">
-                  32
-                </span>
-              </footer>
+
             </section>
           </div>
 

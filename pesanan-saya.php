@@ -1,8 +1,8 @@
-<?php 
+<?php
 include 'connect.php';
 session_start();
 
- ?>
+?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -125,13 +125,10 @@ session_start();
               <i class="menu-icon fa ti-archive"></i>Toko</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Penilaian Toko</a>
+                <i class="menu-icon fa ti-minus"></i><a href="profile-toko.php">Profil Toko</a>
               </li>
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Profil Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Laporan Saya</a>
+                <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
               </li>
             </ul>
           </li>
@@ -141,9 +138,6 @@ session_start();
             <ul class="sub-menu children dropdown-menu">
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="#">Pengaturan Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Akun</a>
               </li>
             </ul>
           </li>
@@ -297,13 +291,13 @@ session_start();
                 <strong class="card-title">Data Pesanan</strong>
               </div>
               <div class="card-body bg-white">
-                <h5><?php 
+                <h5><?php
 
-                  $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi");
-                  $pesanan = mysqli_fetch_array($q);
-                  echo $pesanan['COUNT(id_transaksi)'];
+                $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi");
+                $pesanan = mysqli_fetch_array($q);
+                echo $pesanan['COUNT(id_transaksi)'];
 
-                 ?> Pesanan</h5>
+                ?> Pesanan</h5>
                 <br>
                 <div class="table-stats bg-light rounded">
                   <table class="table">
@@ -319,21 +313,21 @@ session_start();
                   </table>
                 </div>
                 <div>
-                  <?php 
+                  <?php
 
-                    $sql = mysqli_query($conn, "SELECT DISTINCT id_alamat_user FROM transaksi");
-                    while ($data = mysqli_fetch_array($sql)):
-                   ?>
+                  $sql = mysqli_query($conn, "SELECT DISTINCT id_alamat_user FROM transaksi");
+                  while ($data = mysqli_fetch_array($sql)):
+                  ?>
                   <!-- item transaksi atau pesanan saya -->
-                  <?php 
-                  $id = $data['id_alamat_user'];
+                  <?php
+                    $id = $data['id_alamat_user'];
                     $sql1 = mysqli_query($conn, "SELECT DISTINCT detail_alamat_user.nama_lengkap_kontak_alamat, 
                                                   detail_alamat_user.id_alamat_user 
                                                   FROM transaksi INNER JOIN detail_alamat_user 
                                                   ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user
                                                   WHERE transaksi.id_alamat_user = '$id'");
                     while ($data1 = mysqli_fetch_array($sql1)):
-                   ?>
+                  ?>
                   <div class="card">
                     <div class="card-header bg-flat-color-2">
                       <strong class="card-title color-white">
@@ -348,18 +342,18 @@ session_start();
                             font-size: 13px;
                           }
                         </style>
-                        <?php 
-                          $sql2 = mysqli_query($conn, "SELECT transaksi.id_transaksi,id_alamat_user, produk_user.nama_produk, produk_user.harga, transaksi.status, produk_user.gambar, tanggal_beli, detail_transaksi.jumlah 
+                        <?php
+                      $sql2 = mysqli_query($conn, "SELECT transaksi.id_transaksi,id_alamat_user, produk_user.nama_produk, produk_user.harga, transaksi.status, produk_user.gambar, tanggal_beli, detail_transaksi.jumlah 
                                                         FROM produk_user INNER JOIN transaksi INNER JOIN detail_transaksi 
                                                         ON produk_user.id_produk = detail_transaksi.id_produk 
                                                         AND transaksi.id_transaksi = detail_transaksi.id_transaksi
                                                         WHERE id_alamat_user = '$id'");
-                          while ($data2 = mysqli_fetch_array($sql2)):
-                         ?>
+                      while ($data2 = mysqli_fetch_array($sql2)):
+                        ?>
                         <tr>
                           <td class="align-top" style="width: 100%; display: flex; justify-content: space-between; ">
                             <div class="item" style="display: flex;">
-                              <img class="rounded image-table" src="" alt="" >
+                              <img class="rounded image-table" src="" alt="">
                               <p><?='<img src="data:image/png;base64,' . base64_encode($data2['gambar']) . '">' ?></p>
                               <h6 style="font-weight: 500;"><?= $data2['nama_produk'] ?></h6>
                             </div>
@@ -396,7 +390,7 @@ session_start();
     <!-- modals -->
     <!-- Modal -->
     <!-- Modal -->
-    <?php 
+    <?php
     $sql = mysqli_query($conn, "SELECT transaksi.id_transaksi,transaksi.id_alamat_user, transaksi.status, bukti_pembayaran,no_resi, harga_pengiriman, nama_pengiriman, detail_jalan, 
                               detail_patokan, provinsi, kota, kode_pos
                               FROM detail_alamat_user INNER JOIN transaksi INNER JOIN metode_pengiriman 
@@ -404,9 +398,9 @@ session_start();
                               AND transaksi.id_pengiriman = metode_pengiriman.id_pengiriman");
 
     while ($data3 = mysqli_fetch_array($sql)):
-     ?>
-    <div class="modal fc-center fade" id="rincianPesanan<?= $data3['id_transaksi'] ?>" data-backdrop="static" tabindex="-1" role="dialog"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    ?>
+    <div class="modal fc-center fade" id="rincianPesanan<?= $data3['id_transaksi'] ?>" data-backdrop="static"
+      tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -418,44 +412,44 @@ session_start();
           <div class="modal-body">
             <div class="col-lg-20">
               <div class="card">
-                  <form method="post" action="update_pembayaran.php?id=<?= $data3['id_transaksi'] ?>">
+                <form method="post" action="update_pembayaran.php?id=<?= $data3['id_transaksi'] ?>">
 
-                <!-- data table modals -->
-                <!-- <div class="table-stats bg-light rounded"> -->
-                <div class="table-stats order-table ov-h bg-light">
-                  <table class="table ct-start">
-                    <thead class="ct-start">
+                  <!-- data table modals -->
+                  <!-- <div class="table-stats bg-light rounded"> -->
+                  <div class="table-stats order-table ov-h bg-light">
+                    <table class="table ct-start">
+                      <thead class="ct-start">
+                        <tr>
+                          <th class="align-top"><?php echo $data3['id_transaksi'] ?>Alamat</th>
+                          <th class="align-top">Jenis Pengiriman</th>
+                          <th class="align-top">Ongkir</th>
+                          <th class="align-top">No Resi</th>
+                          <th class="align-top">Bukti Pembayaran</th>
+                          <th class="align-top">Aksi</th>
+                        </tr>
+                      </thead>
                       <tr>
-                        <th class="align-top"><?php echo $data3['id_transaksi'] ?>Alamat</th>
-                        <th class="align-top">Jenis Pengiriman</th>
-                        <th class="align-top">Ongkir</th>
-                        <th class="align-top">No Resi</th>
-                        <th class="align-top">Bukti Pembayaran</th>
-                        <th class="align-top">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tr>
-                      <td class="align-top"><?= $data3['detail_jalan'] ?>,<br><?= $data3['detail_patokan'] ?><br><?= $data3['provinsi'] ?>, <?= $data3['kota'] ?><br>POS <?= $data3['kode_pos'] ?></td>
-                      <td class="align-top"><?= $data3['nama_pengiriman'] ?></td>
-                      <td class="align-top">Rp<?= $data3['harga_pengiriman'] ?></td>
-                      <td class="align-top">JT0923873666</td>
-                      <td class="align-top"><?='<img src="data:image/png;base64,' . base64_encode($data3['bukti_pembayaran']) . '">'?></td>
-                      <?php 
-                        if ($data3['status'] == "belum dibayar") {
-                          
-                        }elseif ($data3['status'] == "Diproses") {
-                       ?>
-                       <td class="align-top">
-                        <a href="update_resi.php?id=<?= $data3['id_transaksi'] ?>" id="btn-update-resi" class="btn btn-outline-warning btn-sm"><i
-                            class="fa fa-edit"></i>&nbsp;
-                          Update Resi</a>
-                      </td>
-                      <?php } ?>
-                    </tr>
-                  </table>
-                </div>
+                        <td class="align-top"><?= $data3['detail_jalan'] ?>,<br><?= $data3['detail_patokan'] ?><br><?= $data3['provinsi'] ?>, <?= $data3['kota'] ?><br>POS <?= $data3['kode_pos'] ?></td>
+                        <td class="align-top"><?= $data3['nama_pengiriman'] ?></td>
+                        <td class="align-top">Rp<?= $data3['harga_pengiriman'] ?></td>
+                        <td class="align-top">JT0923873666</td>
+                        <td class="align-top"><?='<img src="data:image/png;base64,' . base64_encode($data3['bukti_pembayaran']) . '">' ?></td>
+                        <?php
+      if ($data3['status'] == "belum dibayar") {
 
-                <!-- end content table modals -->
+      } elseif ($data3['status'] == "Diproses") {
+                        ?>
+                        <td class="align-top">
+                          <a href="update_resi.php?id=<?= $data3['id_transaksi'] ?>" id="btn-update-resi"
+                            class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i>&nbsp;
+                            Update Resi</a>
+                        </td>
+                        <?php } ?>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!-- end content table modals -->
               </div>
             </div>
           </div>
@@ -469,7 +463,7 @@ session_start();
         </div>
       </div>
     </div>
-<?php endwhile; ?>
+    <?php endwhile; ?>
 
   </div>
 
