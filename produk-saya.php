@@ -139,7 +139,7 @@ session_start();
               <i class="menu-icon fa ti-settings"></i>Pengaturan</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Pengaturan Toko</a>
+                <i class="menu-icon fa ti-minus"></i><a href="pengaturan-toko.php">Pengaturan Toko</a>
               </li>
             </ul>
           </li>
@@ -332,77 +332,77 @@ session_start();
                   $no = 1;
                   $tampil = mysqli_query($conn, "SELECT * FROM produk_user where id_user = '$id_us' ORDER BY id_produk DESC");
                   while ($data = mysqli_fetch_array($tampil)):
-                  ?>
+                    ?>
 
-                  <tbody>
-                    <tr>
-                      <td>
-                        <?= $no++ ?>
-                      </td>
-                      <td>
-                        <?='<img src="data:image/png;base64,' . base64_encode($data['gambar']) . '">' ?>
-                      </td>
-                      <td>
-                        <?= $data['nama_produk'] ?>
-                      </td>
-                      <td>
-                        <?= $data['harga'] ?>
-                      </td>
-                      <td>
-                        <?= $data['stok'] ?>
-                      </td>
-                      <td>
-                        <?= $data['kondisi'] ?>
-                      </td>
-                      <td>
-                        <?= $data['bahan'] ?>
-                      </td>
-                      <td>
-                        <?= $data['merek'] ?>
-                      </td>
-                      <td>
-                        <?= $data['ukuran'] ?>
-                      </td>
-                      <td>
-                        <?= $data['motif'] ?>
-                      </td>
-                      <td>
-                        <?= $data['berat'] ?>
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-link btn-sm" data-toggle="modal"
-                          data-target="#lihatDeskripsi<?= $data['id_produk'] ?>">
-                          Lihat Deskripsi
-                        </button>
-                      </td>
-                      <!-- Modal -->
-                      <div class="modal fade" id="lihatDeskripsi<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Deskripsi</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <p>
-                                <?= $data['deskripsi'] ?>
-                              </p>
-                            </div>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <?= $no++ ?>
+                        </td>
+                        <td>
+                          <?='<img src="data:image/png;base64,' . base64_encode($data['gambar']) . '">' ?>
+                        </td>
+                        <td>
+                          <?= $data['nama_produk'] ?>
+                        </td>
+                        <td>
+                          <?= $data['harga'] ?>
+                        </td>
+                        <td>
+                          <?= $data['stok'] ?>
+                        </td>
+                        <td>
+                          <?= $data['kondisi'] ?>
+                        </td>
+                        <td>
+                          <?= $data['bahan'] ?>
+                        </td>
+                        <td>
+                          <?= $data['merek'] ?>
+                        </td>
+                        <td>
+                          <?= $data['ukuran'] ?>
+                        </td>
+                        <td>
+                          <?= $data['motif'] ?>
+                        </td>
+                        <td>
+                          <?= $data['berat'] ?>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-link btn-sm" data-toggle="modal"
+                            data-target="#lihatDeskripsi<?= $data['id_produk'] ?>">
+                            Lihat Deskripsi
+                          </button>
+                        </td>
+                        <!-- Modal -->
+                        <div class="modal fade" id="lihatDeskripsi<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Deskripsi</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>
+                                  <?= $data['deskripsi'] ?>
+                                </p>
+                              </div>
 
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <td>
-                        <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
-                          data-target="#ubah<?= $data['id_produk'] ?>">Ubah</a><br>
-                        <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>"
-                          class="btn btn-danger btn-sm">Hapus</a>
-                      </td>
-                    </tr>
-                    <?php endwhile; ?>
+                        <td>
+                          <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
+                            data-target="#ubah<?= $data['id_produk'] ?>">Ubah</a><br>
+                          <a href="delete_produk_saya.php?id=<?= $data['id_produk'] ?>"
+                            class="btn btn-danger btn-sm">Hapus</a>
+                        </td>
+                      </tr>
+                      <?php endwhile; ?>
 
                   </tbody>
                 </table>
@@ -410,119 +410,125 @@ session_start();
                 <?php
                 $tampil = mysqli_query($conn, "SELECT * FROM produk_user");
                 while ($data = mysqli_fetch_array($tampil)):
-                ?>
-                <div class="modal fade" id="ubah<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
-                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Tambah Produk</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        </button>
+                  ?>
+                  <div class="modal fade" id="ubah<?= $data['id_produk'] ?>" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Tambah Produk</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          </button>
+                        </div>
+                        <form method="POST" action="ubah_produk_saya.php?id=<?= $data['id_produk'] ?>"
+                          enctype="multipart/form-data">
+                          <div class="modal-body">
+
+
+                            <div class="mb-3">
+                              <label class="form-label">Masukkan Gambar Produk</label>
+                              <input type="file" class="form-control-file" id="tgambar" name="tgambar">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Nama Produk</label>
+                              <input type="text" class="form-control" id="tnama_produk"
+                                placeholder="Silahkan masukkan nama produk" name="tnama_produk"
+                                value="<?= $data['nama_produk'] ?>">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Harga</label>
+                              <input type="number" class="form-control" id="tharga"
+                                placeholder="Silahkan masukkan harga produk" name="tharga" value="<?= $data['harga'] ?>">
+                            </div>
+
+                            <div class="form-group">
+                              <label class="form-label">Stok Produk</label>
+                              <input type="number" class="form-control" id="tstok"
+                                placeholder="Silahkan masukkan stok produk" name="tstok" value="<?= $data['stok'] ?>">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Kategori</label>
+                              <select class="form-select" name="tkategori_barang">
+                                <?php
+                                $id = $data['id_kategori'];
+                                $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
+                                while ($data2 = mysqli_fetch_array($q)):
+                                  ?>
+                                  <option value="<?= $data2['nama_kategori'] ?>">
+                                    <?= $data2['nama_kategori'] ?>
+                                  </option>
+                                  <?php endwhile; ?>
+                                <?php
+                                $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                                while ($data1 = mysqli_fetch_array($q)):
+                                  ?>
+                                  <option value="<?= $data1['nama_kategori'] ?>">
+                                    <?= $data1['nama_kategori'] ?>
+                                  </option>
+                                  <?php endwhile; ?>
+                              </select>
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label">Kondisi</label>
+                              <select class="form-select" name="tkondisi">
+                                <option value="<?= $data['kondisi'] ?>">
+                                  <?= $data['kondisi'] ?>
+                                </option>
+                                <option value="Bagus">Bagus</option>
+                                <option value="Kekurangan">Kekurangan</option>
+                              </select>
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Bahan</label>
+                              <input type="text" class="form-control" id="tbahan"
+                                placeholder="Silahkan masukkan bahan produk" name="tbahan" value="<?= $data['bahan'] ?>">
+                            </div>
+
+                            <div class="md-3">
+                              <label class="form-label">Merk</label>
+                              <input type="text" class="form-control" id="tmerk"
+                                placeholder="Silahkan masukkan merk produk" name="tmerk" value="<?= $data['merek'] ?>">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Ukuran</label>
+                              <input type="text" class="form-control" id="tukuran"
+                                placeholder="Silahkan masukkan ukuran produk" name="tukuran"
+                                value="<?= $data['ukuran'] ?>">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Motif</label>
+                              <input type="text" class="form-control" id="tmotif"
+                                placeholder="Silahkan masukkan motif produk" name="tmotif" value="<?= $data['motif'] ?>">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Berat</label>
+                              <input type="text" class="form-control" id="id_berat"
+                                placeholder="Silahkan masukkan berat produk" name="tberat" value="<?= $data['berat'] ?>">
+                            </div>
+
+                            <div class="mb-3">
+                              <label>Deskripsi</label>
+                              <textarea class="form-control" id="id_deskripsi" name="tdeskripsi"
+                                rows="3"><?= $data['deskripsi'] ?></textarea>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="tsimpan">Simpan</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+                          </div>
+                        </form>
                       </div>
-                      <form method="POST" action="ubah_produk_saya.php?id=<?= $data['id_produk'] ?>"
-                        enctype="multipart/form-data">
-                        <div class="modal-body">
-
-
-                          <div class="mb-3">
-                            <label class="form-label">Masukkan Gambar Produk</label>
-                            <input type="file" class="form-control-file" id="tgambar" name="tgambar">
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Nama Produk</label>
-                            <input type="text" class="form-control" id="tnama_produk"
-                              placeholder="Silahkan masukkan nama produk" name="tnama_produk"
-                              value="<?= $data['nama_produk'] ?>">
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="tharga"
-                              placeholder="Silahkan masukkan harga produk" name="tharga" value="<?= $data['harga'] ?>">
-                          </div>
-
-                          <div class="form-group">
-                            <label class="form-label">Stok Produk</label>
-                            <input type="number" class="form-control" id="tstok"
-                              placeholder="Silahkan masukkan stok produk" name="tstok" value="<?= $data['stok'] ?>">
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Kategori</label>
-                            <select class="form-select" name="tkategori_barang">
-                              <?php
-                  $id = $data['id_kategori'];
-                  $q = mysqli_query($conn, "SELECT * FROM kategori_barang where id_kategori = '$id'");
-                  while ($data2 = mysqli_fetch_array($q)):
-                              ?>
-                              <option value="<?= $data2['nama_kategori'] ?>"><?= $data2['nama_kategori'] ?></option>
-                              <?php endwhile; ?>
-                              <?php
-                  $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
-                  while ($data1 = mysqli_fetch_array($q)):
-                              ?>
-                              <option value="<?= $data1['nama_kategori'] ?>"><?= $data1['nama_kategori'] ?></option>
-                              <?php endwhile; ?>
-                            </select>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">Kondisi</label>
-                            <select class="form-select" name="tkondisi">
-                              <option value="<?= $data['kondisi'] ?>"><?= $data['kondisi'] ?></option>
-                              <option value="Bagus">Bagus</option>
-                              <option value="Kekurangan">Kekurangan</option>
-                            </select>
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Bahan</label>
-                            <input type="text" class="form-control" id="tbahan"
-                              placeholder="Silahkan masukkan bahan produk" name="tbahan" value="<?= $data['bahan'] ?>">
-                          </div>
-
-                          <div class="md-3">
-                            <label class="form-label">Merk</label>
-                            <input type="text" class="form-control" id="tmerk"
-                              placeholder="Silahkan masukkan merk produk" name="tmerk" value="<?= $data['merek'] ?>">
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Ukuran</label>
-                            <input type="text" class="form-control" id="tukuran"
-                              placeholder="Silahkan masukkan ukuran produk" name="tukuran"
-                              value="<?= $data['ukuran'] ?>">
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Motif</label>
-                            <input type="text" class="form-control" id="tmotif"
-                              placeholder="Silahkan masukkan motif produk" name="tmotif" value="<?= $data['motif'] ?>">
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label">Berat</label>
-                            <input type="text" class="form-control" id="id_berat"
-                              placeholder="Silahkan masukkan berat produk" name="tberat" value="<?= $data['berat'] ?>">
-                          </div>
-
-                          <div class="mb-3">
-                            <label>Deskripsi</label>
-                            <textarea class="form-control" id="id_deskripsi" name="tdeskripsi"
-                              rows="3"><?= $data['deskripsi'] ?></textarea>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary" name="tsimpan">Simpan</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                        </div>
-                      </form>
                     </div>
                   </div>
-                </div>
 
-                <?php endwhile; ?>
+                  <?php endwhile; ?>
 
                 <!-- Modal -->
 
@@ -569,9 +575,11 @@ session_start();
                               <?php
                               $q = mysqli_query($conn, "SELECT * FROM kategori_barang");
                               while ($data = mysqli_fetch_array($q)):
-                              ?>
-                              <option value="<?= $data['nama_kategori'] ?>"><?= $data['nama_kategori'] ?></option>
-                              <?php endwhile; ?>
+                                ?>
+                                <option value="<?= $data['nama_kategori'] ?>">
+                                  <?= $data['nama_kategori'] ?>
+                                </option>
+                                <?php endwhile; ?>
                             </select>
                           </div>
 

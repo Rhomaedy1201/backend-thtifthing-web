@@ -138,7 +138,7 @@ session_start();
               <i class="menu-icon fa ti-settings"></i>Pengaturan</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Pengaturan Toko</a>
+                <i class="menu-icon fa ti-minus"></i><a href="pengaturan-toko.php">Pengaturan Toko</a>
               </li>
             </ul>
           </li>
@@ -244,55 +244,63 @@ session_start();
     $email = $_SESSION['email'];
     $q = mysqli_query($conn, "SELECT * FROM `detail_alamat_user` JOIN `users` ON detail_alamat_user.id_user = users.id_user WHERE email = '$email'");
     while ($data = mysqli_fetch_array($q)):
-    ?>
-    <div class="content">
-      <div class="animated fadeIn">
-        <div class="row">
+      ?>
+      <div class="content">
+        <div class="animated fadeIn">
+          <div class="row ">
 
 
-          <div class="col-md-12">
-            <section class="card">
-              <div class="twt-feed blue-bg">
-                <div class="corner-ribon black-ribon">
-                  <i class="fa"></i>
-                </div>
-                <div class="fa wtt-mark"></div>
-                <div class="media">
-                  <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
-                    src="images/admin.jpg">
-                  <div class="media-body">
-                    <h2 class="text-white display-6"><?= $data['nama_lengkap'] ?>
-                      <?php if ($data['status'] == "penjual") { ?>
+            <div class="col-md-12">
+              <section class="card">
+                <div class="twt-feed blue-bg">
+                  <div class="corner-ribon black-ribon">
+                    <i class="fa"></i>
+                  </div>
+                  <div class="fa wtt-mark"></div>
+                  <div class="media">
+                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
+                      src="images/admin.jpg">
+                    <div class="media-body">
+                      <h2 class="text-white display-6"><?= $data['nama_lengkap'] ?>
+                        <?php if ($data['status'] == "penjual") { ?>
 
-                      <i class="fa fa-check-circle-o"></i>
+                          <i class="fa fa-check-circle-o"></i>
 
-                      <?php } ?>
-                    </h2>
-                    <p class="text-light"><?= $data['email'] ?></p>
+                          <?php } ?>
+                      </h2>
+                      <p class="text-light"><?= $data['email'] ?></p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
 
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <a href="#"> No Hp : <?= $data['no_hp_kontak_alamat'] ?></a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Status : <?= $data['status'] ?> </a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Alamat : <?= $data['provinsi'] ?>, <?= $data['detail_jalan'] ?>, <?= $data['kota'] ?> <?= $data['kecamatan'] ?>, <?= $data['kode_pos'] ?> </a>
-                </li>
-              </ul>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <a href="#"> No Hp : <?= $data['no_hp_kontak_alamat'] ?></a>
+                  </li>
+                  <li class="list-group-item">
+                    <a href="#">Status : <?= $data['status'] ?> </a>
+                  </li>
+                  <li class="list-group-item">
+                    <a href="#">Alamat : <?= $data['provinsi'] ?>, <?= $data['detail_jalan'] ?>, <?= $data['kota'] ?>
+                      <?= $data['kecamatan'] ?>, <?= $data['kode_pos'] ?>
+                    </a>
+                  </li>
+                </ul>
 
 
-            </section>
+              </section>
+              <button type="button" class="btn btn-primary">
+                <a href="pengaturan-toko.php" class="text-white">
+                  <i class="fa fa-pencil"></i>&nbsp;
+                  Edit Toko
+                </a>
+              </button>
+            </div>
           </div>
-        </div>
-      </div><!-- .animated -->
-    </div><!-- .content -->
-    <?php endwhile; ?>
+        </div><!-- .animated -->
+      </div><!-- .content -->
+      <?php endwhile; ?>
 
 
   </div>

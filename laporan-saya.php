@@ -138,7 +138,7 @@ session_start();
               <i class="menu-icon fa ti-settings"></i>Pengaturan</a>
             <ul class="sub-menu children dropdown-menu">
               <li>
-                <i class="menu-icon fa ti-minus"></i><a href="#">Pengaturan Toko</a>
+                <i class="menu-icon fa ti-minus"></i><a href="pengaturan-toko.php">Pengaturan Toko</a>
               </li>
             </ul>
           </li>
@@ -278,22 +278,30 @@ session_start();
                         JOIN rekening_bank ON transaksi.id_rekening = rekening_bank.id_rekening");
                     while ($data = mysqli_fetch_array($sql)):
                       $no++;
-                    ?>
-                    <tr>
-                      <td><?= $no ?></td>
-                      <!-- <td>System Architect</td> -->
-                      <td><?= $data['nama_lengkap_kontak_alamat'] ?></td>
-                      <td><?= $data['nama_produk'] ?></td>
-                      <td><?= $data['jumlah'] ?>x</td>
-                      <td>Rp<?= $data['harga'] ?></td>
-                      <td><?= date('d-m-Y', strtotime($data['tanggal_beli'])) ?></td>
-                      <td><?= date('d-m-Y', strtotime($data['tanggal_terima'])) ?></td>
-                      <td>Rp<?php $j = (int) $data['jumlah'] * (int) $data['harga'];
-                      echo $j; ?></td>
-                      <td>Bank <?= $data['nama_bank'] ?></td>
-                      <td><?= $data['status'] ?></td>
-                    </tr>
-                    <?php endwhile; ?>
+                      ?>
+                      <tr>
+                        <td><?= $no ?></td>
+                        <!-- <td>System Architect</td> -->
+                        <td>
+                          <?= $data['nama_lengkap_kontak_alamat'] ?>
+                        </td>
+                        <td><?= $data['nama_produk'] ?></td>
+                        <td>
+                          <?= $data['jumlah'] ?>x
+                        </td>
+                        <td>Rp<?= $data['harga'] ?></td>
+                        <td>
+                          <?= date('d-m-Y', strtotime($data['tanggal_beli'])) ?>
+                        </td>
+                        <td><?= date('d-m-Y', strtotime($data['tanggal_terima'])) ?></td>
+                        <td>Rp<?php $j = (int) $data['jumlah'] * (int) $data['harga'];
+                        echo $j; ?></td>
+                        <td>Bank <?= $data['nama_bank'] ?></td>
+                        <td>
+                          <?= $data['status'] ?>
+                        </td>
+                      </tr>
+                      <?php endwhile; ?>
                   </tbody>
                 </table>
               </div>
