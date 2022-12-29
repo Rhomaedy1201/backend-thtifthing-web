@@ -295,8 +295,12 @@ session_start();
               </div>
               <div class="card-body bg-white">
                 <h5><?php
+                $email = $_SESSION['email'];
+                $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                $id_user = mysqli_fetch_array($getid_user);
+                $id = $id_user['id_user'];
 
-                $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi");
+                $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
                 $pesanan = mysqli_fetch_array($q);
                 echo $pesanan['COUNT(id_transaksi)'];
 
@@ -323,12 +327,20 @@ session_start();
                   ?>
                   <!-- item transaksi atau pesanan saya -->
                   <?php
-                    $id = $data['id_alamat_user'];
-                    $sql1 = mysqli_query($conn, "SELECT DISTINCT detail_alamat_user.nama_lengkap_kontak_alamat, 
+                    $email = $_SESSION['email'];
+                    $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                    $id_user = mysqli_fetch_array($getid_user);
+                     
+                    $idu = $id_user['id_user'];
+                    $idau = $data['id_alamat_user'];
+                    $sql1 = mysqli_query($conn, "SELECT DISTINCT 
+                                                  detail_alamat_user.nama_lengkap_kontak_alamat, 
                                                   detail_alamat_user.id_alamat_user 
-                                                  FROM transaksi INNER JOIN detail_alamat_user 
-                                                  ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user
-                                                  WHERE transaksi.id_alamat_user = '$id'");
+                                                FROM transaksi 
+                                                JOIN detail_alamat_user ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user
+                                                JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening
+                                                WHERE rekening_bank.id_user = '$idu'
+                                                AND transaksi.id_alamat_user = '$idau'");
                     while ($data1 = mysqli_fetch_array($sql1)):
                   ?>
                   <div class="card">
@@ -346,11 +358,19 @@ session_start();
                           }
                         </style>
                         <?php
-                      $sql2 = mysqli_query($conn, "SELECT transaksi.id_transaksi,id_alamat_user, produk_user.nama_produk, produk_user.harga, transaksi.status, produk_user.gambar, tanggal_beli, detail_transaksi.jumlah 
-                                                        FROM produk_user INNER JOIN transaksi INNER JOIN detail_transaksi 
-                                                        ON produk_user.id_produk = detail_transaksi.id_produk 
-                                                        AND transaksi.id_transaksi = detail_transaksi.id_transaksi
-                                                        WHERE id_alamat_user = '$id'");
+                        $email = $_SESSION['email'];
+                        $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                        $id_user = mysqli_fetch_array($getid_user);
+                        $id = $id_user['id_user'];
+                        $sql2 = mysqli_query($conn, "SELECT rekening_bank.id_user, transaksi.id_transaksi,id_alamat_user, produk_user.nama_produk, produk_user.harga, transaksi.status, produk_user.gambar, tanggal_beli, detail_transaksi.jumlah 
+                                                  FROM produk_user 
+                                                  JOIN detail_transaksi 
+                                                  ON produk_user.id_produk = detail_transaksi.id_produk 
+                                                  JOIN transaksi
+                                                  ON transaksi.id_transaksi = detail_transaksi.id_transaksi
+                                                  JOIN rekening_bank
+                                                  ON rekening_bank.id_rekening = transaksi.id_rekening
+                                                  WHERE rekening_bank.id_user = '$id'");
                       while ($data2 = mysqli_fetch_array($sql2)):
                         ?>
                         <tr>
