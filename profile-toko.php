@@ -84,6 +84,9 @@ session_start();
 </head>
 
 <body>
+  <?php if (isset($err)) {
+                    echo $err;
+                  } ?>
   <!-- Left Panel -->
   <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
@@ -238,6 +241,7 @@ session_start();
         </div>
       </div>
     </div>
+
     <!-- /#header -->
     <!-- Content -->
     <?php
@@ -291,11 +295,12 @@ session_start();
 
               </section>
               <button type="button" class="btn btn-primary">
-                <a href="pengaturan-toko.php" class="text-white">
+                <a href="pengaturan-toko.php?id=<?= $data['id_user'] ?>" class="text-white">
                   <i class="fa fa-pencil"></i>&nbsp;
                   Edit Toko
                 </a>
               </button>
+              <button onclick="gagal()">p</button>
             </div>
           </div>
         </div><!-- .animated -->
@@ -336,6 +341,10 @@ session_start();
     $(document).ready(function () {
       $('#bootstrap-data-table-export').DataTable();
     });
+
+    function gagal() {
+  alert("password lama salah");
+}
   </script>
 
 </body>

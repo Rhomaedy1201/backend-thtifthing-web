@@ -240,7 +240,13 @@ session_start();
     </div>
     <!-- /#header -->
     <!-- Content -->
+<?php 
+  $getId = $_GET['id'];
 
+  $sql = mysqli_query($conn, "SELECT * FROM `users` where id_user = '$getId'");
+  while ($data = mysqli_fetch_array($sql)):
+ ?>
+<form method="post" action="ubah_toko.php?id=<?= $data['id_user'] ?>">
     <div class="content">
       <div class="animated fadeIn">
         <div class="row">
@@ -252,31 +258,44 @@ session_start();
               <div class="card-body card-block">
                 <div class="form-group">
                   <label for="company" class=" form-control-label">Nama Lengkap</label>
-                  <input type="text" id="company" placeholder="Full Nama" class="form-control">
+                  <input type="text" id="company" name="nama_lengkap" value="<?= $data['nama_lengkap'] ?>" placeholder="Full Nama" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="company" class=" form-control-label">Email</label>
-                  <input type="text" id="company" disabled placeholder="Email" class="form-control">
+                  <input type="text" id="company" disabled value="<?= $data['email'] ?>" placeholder="Email" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="company" class=" form-control-label">No Hp</label>
-                  <input type="text" id="company" placeholder="No Hp" class="form-control">
+                  <input type="text" id="company" name="no_hp" value="<?= $data['no_hp'] ?>" placeholder="No Hp" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="company" class=" form-control-label">Status</label>
-                  <input type="text" id="company" placeholder="Status" class="form-control">
+                  <select class="form-select" name="status">
+                      <?php
+                          $e = $data['email'];
+                          $q = mysqli_query($conn, "SELECT status FROM users where email = '$e'");
+                          while ($data2 = mysqli_fetch_array($q)):
+                        ?>
+                      <option value="<?= $data2['status'] ?>"><?= $data2['status'] ?></option>
+                        <?php endwhile; ?>
+                      <option value="penjual">penjual</option>
+                      <option value="user">user</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="company" class=" form-control-label">Password Lama</label>
-                  <input type="text" id="company" placeholder="Password lama" class="form-control">
+                  <label for="company" class=" form-control-label"><p style="color: red;">
+                    <?php  if (isset($_GET['err'])) {
+                    echo "password lama salah";
+                  } ?></p>Password Lama</label>
+                  <input type="text" id="company" name="password_lama" required="" placeholder="Password lama" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="company" class=" form-control-label">Password Baru</label>
-                  <input type="text" id="company" placeholder="Password baru" class="form-control">
+                  <input type="text" id="company" name="password_baru" required="" placeholder="Password baru" class="form-control">
                 </div>
 
 
-                <button type="button" class="btn btn-outline-warning"><i class="fa fa-pencil"></i>&nbsp;
+                <button type="submit" class="btn btn-outline-warning"><i class="fa fa-pencil"></i>&nbsp;
                   Ubah Akun</button>
               </div>
             </div>
@@ -287,7 +306,8 @@ session_start();
       </div><!-- .animated -->
     </div><!-- .content -->
 
-
+</form>
+<?php endwhile; ?>
   </div>
 
 
