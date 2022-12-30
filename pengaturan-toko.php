@@ -93,6 +93,9 @@ session_start();
             <a href="dashboard.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
           </li>
+          <li class="">
+            <a href="tambah-kategori.php"><i class="menu-icon ti-view-list-alt"></i>Tambah Kategori</a>
+          </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-clipboard"></i>Pesanan</a>
@@ -133,15 +136,7 @@ session_start();
               </li>
             </ul>
           </li>
-          <li class="menu-item-has-children active dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-settings"></i>Pengaturan</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="pengaturan-toko.php">Pengaturan Toko</a>
-              </li>
-            </ul>
-          </li>
+
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -240,74 +235,84 @@ session_start();
     </div>
     <!-- /#header -->
     <!-- Content -->
-<?php 
-  $getId = $_GET['id'];
+    <?php
+    $getId = $_GET['id'];
 
-  $sql = mysqli_query($conn, "SELECT * FROM `users` where id_user = '$getId'");
-  while ($data = mysqli_fetch_array($sql)):
- ?>
-<form method="post" action="ubah_toko.php?id=<?= $data['id_user'] ?>">
-    <div class="content">
-      <div class="animated fadeIn">
-        <div class="row">
-
-
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header"><strong>Edit</strong><small> Toko</small></div>
-              <div class="card-body card-block">
-                <div class="form-group">
-                  <label for="company" class=" form-control-label">Nama Lengkap</label>
-                  <input type="text" id="company" name="nama_lengkap" value="<?= $data['nama_lengkap'] ?>" placeholder="Full Nama" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="company" class=" form-control-label">Email</label>
-                  <input type="text" id="company" disabled value="<?= $data['email'] ?>" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="company" class=" form-control-label">No Hp</label>
-                  <input type="text" id="company" name="no_hp" value="<?= $data['no_hp'] ?>" placeholder="No Hp" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="company" class=" form-control-label">Status</label>
-                  <select class="form-select" name="status">
-                      <?php
-                          $e = $data['email'];
-                          $q = mysqli_query($conn, "SELECT status FROM users where email = '$e'");
-                          while ($data2 = mysqli_fetch_array($q)):
-                        ?>
-                      <option value="<?= $data2['status'] ?>"><?= $data2['status'] ?></option>
-                        <?php endwhile; ?>
-                      <option value="penjual">penjual</option>
-                      <option value="user">user</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="company" class=" form-control-label"><p style="color: red;">
-                    <?php  if (isset($_GET['err'])) {
-                    echo "password lama salah";
-                  } ?></p>Password Lama</label>
-                  <input type="text" id="company" name="password_lama" required="" placeholder="Password lama" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="company" class=" form-control-label">Password Baru</label>
-                  <input type="text" id="company" name="password_baru" required="" placeholder="Password baru" class="form-control">
-                </div>
+    $sql = mysqli_query($conn, "SELECT * FROM `users` where id_user = '$getId'");
+    while ($data = mysqli_fetch_array($sql)):
+      ?>
+      <form method="post" action="ubah_toko.php?id=<?= $data['id_user'] ?>">
+        <div class="content">
+          <div class="animated fadeIn">
+            <div class="row">
 
 
-                <button type="submit" class="btn btn-outline-warning"><i class="fa fa-pencil"></i>&nbsp;
-                  Ubah Akun</button>
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header"><strong>Edit</strong><small> Toko</small></div>
+                  <div class="card-body card-block">
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">Nama Lengkap</label>
+                      <input type="text" id="company" name="nama_lengkap" value="<?= $data['nama_lengkap'] ?>"
+                        placeholder="Full Nama" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">Email</label>
+                      <input type="text" id="company" disabled value="<?= $data['email'] ?>" placeholder="Email"
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">No Hp</label>
+                      <input type="text" id="company" name="no_hp" value="<?= $data['no_hp'] ?>" placeholder="No Hp"
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">Status</label>
+                      <select class="form-select" name="status">
+                        <?php
+                        $e = $data['email'];
+                        $q = mysqli_query($conn, "SELECT status FROM users where email = '$e'");
+                        while ($data2 = mysqli_fetch_array($q)):
+                          ?>
+                          <option value="<?= $data2['status'] ?>">
+                            <?= $data2['status'] ?>
+                          </option>
+                          <?php endwhile; ?>
+                        <option value="penjual">penjual</option>
+                        <option value="user">user</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">
+                        <p style="color: red;">
+                          <?php if (isset($_GET['err'])) {
+                          echo "password lama salah";
+                        } ?>
+                        </p>Password Lama
+                      </label>
+                      <input type="text" id="company" name="password_lama" required="" placeholder="Password lama"
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">Password Baru</label>
+                      <input type="text" id="company" name="password_baru" required="" placeholder="Password baru"
+                        class="form-control">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-outline-warning"><i class="fa fa-pencil"></i>&nbsp;
+                      Ubah Akun</button>
+                  </div>
+                </div>
               </div>
+
+
             </div>
-          </div>
+          </div><!-- .animated -->
+        </div><!-- .content -->
 
-
-        </div>
-      </div><!-- .animated -->
-    </div><!-- .content -->
-
-</form>
-<?php endwhile; ?>
+      </form>
+      <?php endwhile; ?>
   </div>
 
 

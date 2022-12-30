@@ -93,6 +93,9 @@ session_start();
             <a href="dashboard.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
           </li>
+          <li class="">
+            <a href="tambah-kategori.php"><i class="menu-icon ti-view-list-alt"></i>Tambah Kategori</a>
+          </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-clipboard"></i>Pesanan</a>
@@ -130,15 +133,6 @@ session_start();
               </li>
               <li>
                 <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-settings"></i>Pengaturan</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="pengaturan-toko.php">Pengaturan Toko</a>
               </li>
             </ul>
           </li>
