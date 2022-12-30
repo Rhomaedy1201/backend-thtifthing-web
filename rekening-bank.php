@@ -17,8 +17,8 @@ session_start();
   <meta name="description" content="Ela Admin - HTML5 Admin Template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-  <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+  <link rel="apple-touch-icon" href="images/icon.png">
+  <link rel="shortcut icon" href="images/icon.png">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -152,8 +152,8 @@ session_start();
     <header id="header" class="header">
       <div class="top-left">
         <div class="navbar-header">
-          <a class="navbar-brand" href="./"><img src="images/gothrif.png" alt="Logo"></a>
-          <a class="navbar-brand hidden" href="./"><img src="images/gothrif.png" alt="Logo"></a>
+          <a class="navbar-brand" href="./"><img src="images/logo-light.png" alt="Logo"></a>
+          <a class="navbar-brand hidden" href="./"><img src="images/logo-light.png" alt="Logo"></a>
           <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
         </div>
       </div>
@@ -180,7 +180,7 @@ session_start();
             </a>
 
             <div class="user-menu dropdown-menu">
-              <a class="nav-link" href="page-login.php"><i class="fa fa-power-off"></i>Logout</a>
+              <a class="nav-link" href="logout.php?logout=true"><i class="fa fa-power-off"></i>Logout</a>
             </div>
           </div>
         </div>

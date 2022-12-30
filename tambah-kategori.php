@@ -25,8 +25,8 @@ if (!isset($_SESSION['email'])) {
   <meta name="description" content="Ela Admin - HTML5 Admin Template" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
-  <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png" />
+  <link rel="apple-touch-icon" href="images/icon.png" />
+  <link rel="shortcut icon" href="images/icon.png" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" />
@@ -113,8 +113,8 @@ if (!isset($_SESSION['email'])) {
     <header id="header" class="header">
       <div class="top-left">
         <div class="navbar-header">
-          <a class="navbar-brand" href="./"><img src="images/gothrif.png" alt="Logo"></a>
-          <a class="navbar-brand hidden" href="./"><img src="images/gothrif.png" alt="Logo"></a>
+          <a class="navbar-brand" href="./"><img src="images/logo-light.png" alt="Logo"></a>
+          <a class="navbar-brand hidden" href="./"><img src="images/logo-light.png" alt="Logo"></a>
           <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
         </div>
       </div>
@@ -133,84 +133,17 @@ if (!isset($_SESSION['email'])) {
               </form>
             </div>
 
-            <div class="dropdown for-notification">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-bell"></i>
-                <span class="count bg-danger">3</span>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="notification">
-                <p class="red">You have 3 Notification</p>
-                <a class="dropdown-item media" href="#">
-                  <i class="fa fa-check"></i>
-                  <p>Server #1 overloaded.</p>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <i class="fa fa-info"></i>
-                  <p>Server #2 overloaded.</p>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <i class="fa fa-warning"></i>
-                  <p>Server #3 overloaded.</p>
-                </a>
+            <div class="user-area dropdown float-right">
+              <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar" />
+              </a>
+              <div class="user-menu dropdown-menu">
+                <a class="nav-link" href="logout.php?logout=true"><i class="fa fa-power-off"></i>Logout</a>
               </div>
-            </div>
-
-            <div class="dropdown for-message">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-envelope"></i>
-                <span class="count bg-primary">4</span>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="message">
-                <p class="red">You have 4 Mails</p>
-                <a class="dropdown-item media" href="#">
-                  <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg" /></span>
-                  <div class="message media-body">
-                    <span class="name float-left">Jonathan Smith</span>
-                    <span class="time float-right">Just now</span>
-                    <p>Hello, this is an example msg</p>
-                  </div>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg" /></span>
-                  <div class="message media-body">
-                    <span class="name float-left">Jack Sanders</span>
-                    <span class="time float-right">5 minutes ago</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                  </div>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg" /></span>
-                  <div class="message media-body">
-                    <span class="name float-left">Cheryl Wheeler</span>
-                    <span class="time float-right">10 minutes ago</span>
-                    <p>Hello, this is an example msg</p>
-                  </div>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg" /></span>
-                  <div class="message media-body">
-                    <span class="name float-left">Rachel Santos</span>
-                    <span class="time float-right">15 minutes ago</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="user-area dropdown float-right">
-            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar" />
-            </a>
-            <div class="user-menu dropdown-menu">
-              <a class="nav-link" href="logout.php?logout=true"><i class="fa fa-power -off"></i>Logout</a>
             </div>
           </div>
         </div>
-      </div>
     </header>
     <!-- /#header -->
     <div class="breadcrumbs">
@@ -263,26 +196,28 @@ if (!isset($_SESSION['email'])) {
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
-                      $no = 0;
-                      $sql = mysqli_query($conn, "SELECT * FROM kategori_barang");
-                      while ($data = mysqli_fetch_array($sql)):
+                    <?php
+                    $no = 0;
+                    $sql = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                    while ($data = mysqli_fetch_array($sql)):
                       $no++;
-                     ?>
-                    <tr>
-                      <th><?= $no ?></th>
-                      <td>
-                        <p class="rounded" style="width: 40%" src=""><?='<img src="data:image/png;base64,' . base64_encode($data['gambar']) . '">' ?></p>
-                      </td>
-                      <td><?= $data['nama_kategori'] ?></td>
+                      ?>
+                      <tr>
+                        <th><?= $no ?></th>
+                        <td>
+                          <p class="rounded" style="width: 40%" src="">
+                            <?='<img src="data:image/png;base64,' . base64_encode($data['gambar']) . '">' ?>
+                          </p>
+                        </td>
+                        <td><?= $data['nama_kategori'] ?></td>
 
-                      <td>
-                        <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
-                          data-target="#ubahKategori<?= $data['id_kategori'] ?>"><i class="fa fa-pencil"></i>&nbsp;
-                          Ubah Kategori</button>
-                      </td>
-                    </tr>
-                  <?php endwhile; ?>
+                        <td>
+                          <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
+                            data-target="#ubahKategori<?= $data['id_kategori'] ?>"><i class="fa fa-pencil"></i>&nbsp;
+                            Ubah Kategori</button>
+                        </td>
+                      </tr>
+                      <?php endwhile; ?>
                   </tbody>
                 </table>
               </div>
@@ -305,56 +240,6 @@ if (!isset($_SESSION['email'])) {
             </button>
           </div>
           <form method="post" action="tambah_kategori.php" enctype="multipart/form-data">
-          <div class="modal-body">
-
-            <!-- Form -->
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-header"></div>
-                <div class="card-body card-block">
-
-                  <div class="form-group">
-                    <label for="company" class=" form-control-label">Foto Kategori</label>
-                    <input type="file" class="form-control-file" id="tgambar" name="tgambar">
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="company" class=" form-control-label">Nama Kategori</label>
-                    <input type="text" id="company" name="nama_kategori" placeholder="Nama" class="form-control">
-                  </div>
-
-                </div>
-              </div>
-              <!-- END FORM -->
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Tambah</button>
-            </div>
-          </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-
-      <!-- Modal ubah kategori -->
-      <?php 
-        $sql2 = mysqli_query($conn, "SELECT * FROM kategori_barang");
-        while ($data2 = mysqli_fetch_array($sql2)):
-       ?>
-      <form method="post" action="ubah_kategori.php" enctype="multipart/form-data">
-      <div class="modal fade" id="ubahKategori<?= $data2['id_kategori'] ?>" tabindex="1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Tambah Kategori</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
             <div class="modal-body">
 
               <!-- Form -->
@@ -362,17 +247,15 @@ if (!isset($_SESSION['email'])) {
                 <div class="card">
                   <div class="card-header"></div>
                   <div class="card-body card-block">
+
                     <div class="form-group">
-                      <label for="id_kategori">ID Kategori</label>
-                      <input type="text" id="id_kategori" name="id_kategori" placeholder="ID Kategori" class="form-control" readonly value="<?= $data2['id_kategori'] ?>">
+                      <label for="company" class=" form-control-label">Foto Kategori</label>
+                      <input type="file" class="form-control-file" id="tgambar" name="tgambar">
                     </div>
+
                     <div class="form-group">
-                        <label for="nama_kategori">Nama Kategori</label>
-                        <input type="text" id="nama_kategori" name="nama_kategori" placeholder="Nama Kategori" class="form-control" value="<?= $data2['nama_kategori'] ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="tgambar">Foto Kategori</label>
-                        <input type="file" class="form-control-file" id="tgambar" name="tgambar">
+                      <label for="company" class=" form-control-label">Nama Kategori</label>
+                      <input type="text" id="company" name="nama_kategori" placeholder="Nama" class="form-control">
                     </div>
 
                   </div>
@@ -382,22 +265,77 @@ if (!isset($_SESSION['email'])) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Ubah</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Modal ubah kategori -->
+    <?php
+    $sql2 = mysqli_query($conn, "SELECT * FROM kategori_barang");
+    while ($data2 = mysqli_fetch_array($sql2)):
+      ?>
+      <form method="post" action="ubah_kategori.php" enctype="multipart/form-data">
+        <div class="modal fade" id="ubahKategori<?= $data2['id_kategori'] ?>" tabindex="1" role="dialog"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Kategori</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <!-- Form -->
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body card-block">
+                      <div class="form-group">
+                        <label for="id_kategori">ID Kategori</label>
+                        <input type="text" id="id_kategori" name="id_kategori" placeholder="ID Kategori"
+                          class="form-control" readonly value="<?= $data2['id_kategori'] ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="nama_kategori">Nama Kategori</label>
+                        <input type="text" id="nama_kategori" name="nama_kategori" placeholder="Nama Kategori"
+                          class="form-control" value="<?= $data2['nama_kategori'] ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="tgambar">Foto Kategori</label>
+                        <input type="file" class="form-control-file" id="tgambar" name="tgambar">
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- END FORM -->
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Ubah</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  <?php endwhile; ?>
+      </form>
+      <?php endwhile; ?>
 
 
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-        <script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
 </body>
