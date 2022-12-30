@@ -297,7 +297,6 @@ session_start();
                   Edit Toko
                 </a>
               </button>
-              <button onclick="gagal()">p</button>
             </div>
           </div>
         </div><!-- .animated -->

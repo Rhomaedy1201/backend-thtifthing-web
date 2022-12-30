@@ -94,9 +94,6 @@ session_start();
             <a href="dashboard.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
           </li>
-          <li class="">
-            <a href="tambah-kategori.php"><i class="menu-icon ti-view-list-alt"></i>Tambah Kategori</a>
-          </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-clipboard"></i>Pesanan</a>
