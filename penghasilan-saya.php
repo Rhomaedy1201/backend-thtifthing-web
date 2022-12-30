@@ -109,7 +109,7 @@ session_start();
               </li>
             </ul>
           </li>
-          <li class="menu-item-has-children dropdown">
+          <li class="menu-item-has-children active dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon ti-wallet"></i>Keuangan</a>
             <ul class="sub-menu children dropdown-menu">
@@ -121,7 +121,7 @@ session_start();
               </li>
             </ul>
           </li>
-          <li class="menu-item-has-children active dropdown">
+          <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="menu-icon fa ti-archive"></i>Toko</a>
             <ul class="sub-menu children dropdown-menu">
@@ -164,30 +164,6 @@ session_start();
                 </button>
               </form>
             </div>
-
-            <div class="dropdown for-notification">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-bell"></i>
-                <span class="count bg-danger">3</span>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="notification">
-                <p class="red">You have 3 Notification</p>
-                <a class="dropdown-item media" href="#">
-                  <i class="fa fa-check"></i>
-                  <p>Server #1 overloaded.</p>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <i class="fa fa-info"></i>
-                  <p>Server #2 overloaded.</p>
-                </a>
-                <a class="dropdown-item media" href="#">
-                  <i class="fa fa-warning"></i>
-                  <p>Server #3 overloaded.</p>
-                </a>
-              </div>
-            </div>
-
           </div>
 
           <div class="user-area dropdown float-right">
@@ -197,7 +173,7 @@ session_start();
             </a>
 
             <div class="user-menu dropdown-menu">
-              <a class="nav-link" href="page-login.php"><i class="fa fa-power -off"></i>Logout</a>
+              <a class="nav-link" href="page-login.php"><i class="fa fa-power-off"></i>Logout</a>
             </div>
           </div>
         </div>
@@ -245,17 +221,19 @@ session_start();
                     </div>
                     <div class="stat-content">
                       <div class="text-left dib">
-                        <div class="stat-text">Rp<span class="count"><?php
-                  $email = $_SESSION['email'];
-                  $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
-                  $id_user = mysqli_fetch_array($getid_user);
-                  $id = $id_user['id_user'];
+                        <div class="stat-text">Rp<span class="count">
+                            <?php
+                            $email = $_SESSION['email'];
+                            $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                            $id_user = mysqli_fetch_array($getid_user);
+                            $id = $id_user['id_user'];
 
-                  $q = mysqli_query($conn, "SELECT SUM(total_pembayaran) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
-                  $pesanan = mysqli_fetch_array($q);
-                  $int = intval($pesanan['SUM(total_pembayaran)']);
-                  echo $int;
-                  ?></span></div>
+                            $q = mysqli_query($conn, "SELECT SUM(total_pembayaran) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
+                            $pesanan = mysqli_fetch_array($q);
+                            $int = intval($pesanan['SUM(total_pembayaran)']);
+                            echo $int;
+                            ?>
+                          </span></div>
                         <div class="stat-heading">Penghasilan</div>
                       </div>
                     </div>
@@ -264,7 +242,7 @@ session_start();
               </div>
             </a>
           </div>
-          
+
           <div class="col-lg-3 col-md-6">
             <a href="laporan-saya.php">
               <div class="card">
@@ -276,16 +254,16 @@ session_start();
                     <div class="stat-content">
                       <div class="text-left dib">
                         <div class="stat-text"><span><?php
-                  $email = $_SESSION['email'];
-                  $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
-                  $id_user = mysqli_fetch_array($getid_user);
-                  $id = $id_user['id_user'];
+                        $email = $_SESSION['email'];
+                        $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                        $id_user = mysqli_fetch_array($getid_user);
+                        $id = $id_user['id_user'];
 
-                  $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
-                  $pesanan = mysqli_fetch_array($q);
-                  echo $pesanan['COUNT(id_transaksi)'];
+                        $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
+                        $pesanan = mysqli_fetch_array($q);
+                        echo $pesanan['COUNT(id_transaksi)'];
 
-                  ?> Barang</span></div>
+                        ?> Barang</span></div>
                         <div class="stat-heading">Terjual</div>
                       </div>
                     </div>
