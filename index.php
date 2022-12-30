@@ -21,18 +21,24 @@ if (isset($_POST['submit'])) {
             $error = "email tidak ditemukan";
         } else {
             // Ambil kata_sandi hash dari database
-            $query  = "SELECT kata_sandi FROM users WHERE email = '$email'";
+            $query  = "SELECT * FROM users WHERE email = '$email'";
             $result = mysqli_query($conn, $query);
             $row    = mysqli_fetch_assoc($result);
             $hash   = $row['kata_sandi'];
+            $status = $row['status'];
 
             // Bandingkan kata_sandi dengan hash yang tersimpan di database
             if (md5($kata_sandi) === $hash) {
                 // Buat session jika kata_sandi sesuai
                 $_SESSION['email'] = $email;
                 $_SESSION['nama_lengkap'] = $nama_lengkap;
+                if ($status === "super admin") {
+                    header("Location: tambah-kategori.php");
+                    exit;
+                }else{
                 header("Location: dashboard.php");
                 exit;
+                }
             } else {
                 // var_dump(md5($kata_sandi) === $hash);
                 $error = "email atau kata sandi salah!";

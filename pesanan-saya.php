@@ -359,6 +359,7 @@ session_start();
                             $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
                             $id_user = mysqli_fetch_array($getid_user);
                             $id = $id_user['id_user'];
+                            $id_pembeli = $data1['id_alamat_user'];
                             $sql2 = mysqli_query($conn, "SELECT rekening_bank.id_user, transaksi.id_transaksi,id_alamat_user, produk_user.nama_produk, produk_user.harga, transaksi.status, produk_user.gambar, tanggal_beli, detail_transaksi.jumlah 
                                                   FROM produk_user 
                                                   JOIN detail_transaksi 
@@ -367,7 +368,8 @@ session_start();
                                                   ON transaksi.id_transaksi = detail_transaksi.id_transaksi
                                                   JOIN rekening_bank
                                                   ON rekening_bank.id_rekening = transaksi.id_rekening
-                                                  WHERE rekening_bank.id_user = '$id'");
+                                                  WHERE rekening_bank.id_user = '$id'
+                                                  AND transaksi.id_alamat_user = '$id_pembeli'");
                             while ($data2 = mysqli_fetch_array($sql2)):
                               ?>
                               <tr>

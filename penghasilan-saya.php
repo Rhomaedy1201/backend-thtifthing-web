@@ -248,7 +248,17 @@ session_start();
                     </div>
                     <div class="stat-content">
                       <div class="text-left dib">
-                        <div class="stat-text">Rp<span class="count">300000</span></div>
+                        <div class="stat-text">Rp<span class="count"><?php
+                  $email = $_SESSION['email'];
+                  $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                  $id_user = mysqli_fetch_array($getid_user);
+                  $id = $id_user['id_user'];
+
+                  $q = mysqli_query($conn, "SELECT SUM(total_pembayaran) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
+                  $pesanan = mysqli_fetch_array($q);
+                  $int = intval($pesanan['SUM(total_pembayaran)']);
+                  echo $int;
+                  ?></span></div>
                         <div class="stat-heading">Penghasilan</div>
                       </div>
                     </div>
@@ -257,7 +267,7 @@ session_start();
               </div>
             </a>
           </div>
-
+          
           <div class="col-lg-3 col-md-6">
             <a href="laporan-saya.php">
               <div class="card">
@@ -268,7 +278,17 @@ session_start();
                     </div>
                     <div class="stat-content">
                       <div class="text-left dib">
-                        <div class="stat-text"><span>10 Barang</span></div>
+                        <div class="stat-text"><span><?php
+                  $email = $_SESSION['email'];
+                  $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                  $id_user = mysqli_fetch_array($getid_user);
+                  $id = $id_user['id_user'];
+
+                  $q = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id'");
+                  $pesanan = mysqli_fetch_array($q);
+                  echo $pesanan['COUNT(id_transaksi)'];
+
+                  ?> Barang</span></div>
                         <div class="stat-heading">Terjual</div>
                       </div>
                     </div>

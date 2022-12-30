@@ -263,14 +263,19 @@ session_start();
                   </thead>
                   <tbody>
                     <?php
+                    $email = $_SESSION['email'];
+                    $getid_user = mysqli_query($conn, "SELECT id_user FROM `users` WHERE email = '$email'");
+                    $id_user = mysqli_fetch_array($getid_user);
+                    $id = $id_user['id_user'];
                     $no = 0;
 
                     $sql = mysqli_query($conn, "SELECT detail_alamat_user.nama_lengkap_kontak_alamat, produk_user.nama_produk, detail_transaksi.jumlah, produk_user.harga, transaksi.tanggal_beli, transaksi.tanggal_terima, rekening_bank.nama_bank, transaksi.status
-                        FROM detail_alamat_user
-                        JOIN transaksi ON detail_alamat_user.id_alamat_user = transaksi.id_transaksi
+                        FROM transaksi
+                        JOIN detail_alamat_user ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user
                         JOIN detail_transaksi ON transaksi.id_transaksi = detail_transaksi.id_transaksi
                         JOIN produk_user ON detail_transaksi.id_produk = produk_user.id_produk
-                        JOIN rekening_bank ON transaksi.id_rekening = rekening_bank.id_rekening");
+                        JOIN rekening_bank ON transaksi.id_rekening = rekening_bank.id_rekening
+                        WHERE rekening_bank.id_user = '$id'");
                     while ($data = mysqli_fetch_array($sql)):
                       $no++;
                       ?>

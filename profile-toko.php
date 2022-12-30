@@ -84,9 +84,6 @@ session_start();
 </head>
 
 <body>
-  <?php if (isset($err)) {
-  echo $err;
-} ?>
   <!-- Left Panel -->
   <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
@@ -95,9 +92,6 @@ session_start();
           <li class="">
             <a href="dashboard.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard
             </a>
-          </li>
-          <li class="">
-            <a href="tambah-kategori.php"><i class="menu-icon ti-view-list-alt"></i>Tambah Kategori</a>
           </li>
           <li class="menu-item-has-children dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,7 +133,15 @@ session_start();
               </li>
             </ul>
           </li>
-
+          <li class="menu-item-has-children dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="menu-icon fa ti-settings"></i>Pengaturan</a>
+            <ul class="sub-menu children dropdown-menu">
+              <li>
+                <i class="menu-icon fa ti-minus"></i><a href="pengaturan-toko.php">Pengaturan Toko</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -295,6 +297,7 @@ session_start();
                   Edit Toko
                 </a>
               </button>
+              <button onclick="gagal()">p</button>
             </div>
           </div>
         </div><!-- .animated -->
@@ -303,6 +306,12 @@ session_start();
 
 
   </div>
+
+
+
+
+
+
 
 
   <!-- Scripts -->
@@ -329,10 +338,6 @@ session_start();
     $(document).ready(function () {
       $('#bootstrap-data-table-export').DataTable();
     });
-
-    function gagal() {
-      alert("password lama salah");
-    }
   </script>
 
 </body>

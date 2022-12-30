@@ -1,5 +1,5 @@
 <?php
-
+include 'connect.php';
 session_start();
 
 if (!isset($_SESSION['email'])) {
@@ -98,51 +98,8 @@ if (!isset($_SESSION['email'])) {
     <nav class="navbar navbar-expand-sm navbar-default">
       <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="">
-            <a href="dashboard.php"><i class="menu-icon fa ti-dashboard"></i>Dashboard</a>
-          </li>
           <li class="active">
             <a href="tambah-kategori.php"><i class="menu-icon ti-view-list-alt"></i>Tambah Kategori</a>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-clipboard"></i>Pesanan</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li><i class="fa ti-minus"></i><a href="pesanan-saya.php">Pesanan Saya</a></li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-briefcase"></i>Produk</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="produk-saya.php">Produk Saya</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon ti-wallet"></i>Keuangan</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="penghasilan-saya.php">Penghasilan Saya</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="rekening-bank.php">Rekening Bank</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="menu-icon fa ti-archive"></i>Toko</a>
-            <ul class="sub-menu children dropdown-menu">
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="profile-toko.php">Profil Toko</a>
-              </li>
-              <li>
-                <i class="menu-icon fa ti-minus"></i><a href="laporan-saya.php">Laporan Saya</a>
-              </li>
-            </ul>
           </li>
         </ul>
       </div>
@@ -306,20 +263,26 @@ if (!isset($_SESSION['email'])) {
                     </tr>
                   </thead>
                   <tbody>
+                    <?php 
+                      $no = 0;
+                      $sql = mysqli_query($conn, "SELECT * FROM kategori_barang");
+                      while ($data = mysqli_fetch_array($sql)):
+                      $no++;
+                     ?>
                     <tr>
-                      <th>1</th>
+                      <th><?= $no ?></th>
                       <td>
-                        <img class="rounded" style="width: 40%" src="images/avatar/5.jpg">
+                        <p class="rounded" style="width: 40%" src=""><?='<img src="data:image/png;base64,' . base64_encode($data['gambar']) . '">' ?></p>
                       </td>
-                      <td>Nama Kategori</td>
+                      <td><?= $data['nama_kategori'] ?></td>
 
                       <td>
                         <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
-                          data-target="#ubahKategori"><i class="fa fa-pencil"></i>&nbsp;
+                          data-target="#ubahKategori<?= $data['id_kategori'] ?>"><i class="fa fa-pencil"></i>&nbsp;
                           Ubah Kategori</button>
                       </td>
                     </tr>
-
+                  <?php endwhile; ?>
                   </tbody>
                 </table>
               </div>
@@ -341,6 +304,7 @@ if (!isset($_SESSION['email'])) {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <form method="post" action="tambah_kategori.php" enctype="multipart/form-data">
           <div class="modal-body">
 
             <!-- Form -->
@@ -348,13 +312,15 @@ if (!isset($_SESSION['email'])) {
               <div class="card">
                 <div class="card-header"></div>
                 <div class="card-body card-block">
+
                   <div class="form-group">
                     <label for="company" class=" form-control-label">Foto Kategori</label>
-                    <input type="file" placeholder="Foto" accept="image/*">
+                    <input type="file" class="form-control-file" id="tgambar" name="tgambar">
                   </div>
+                  
                   <div class="form-group">
                     <label for="company" class=" form-control-label">Nama Kategori</label>
-                    <input type="text" id="company" placeholder="Nama" class="form-control">
+                    <input type="text" id="company" name="nama_kategori" placeholder="Nama" class="form-control">
                   </div>
 
                 </div>
@@ -364,15 +330,23 @@ if (!isset($_SESSION['email'])) {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Tambah</button>
+              <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
           </div>
+          </form>
         </div>
       </div>
+    </div>
+
 
 
       <!-- Modal ubah kategori -->
-      <div class="modal fade" id="ubahKategori" tabindex="1" role="dialog" aria-hidden="true">
+      <?php 
+        $sql2 = mysqli_query($conn, "SELECT * FROM kategori_barang");
+        while ($data2 = mysqli_fetch_array($sql2)):
+       ?>
+      <form method="post" action="ubah_kategori.php" enctype="multipart/form-data">
+      <div class="modal fade" id="ubahKategori<?= $data2['id_kategori'] ?>" tabindex="1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -389,12 +363,16 @@ if (!isset($_SESSION['email'])) {
                   <div class="card-header"></div>
                   <div class="card-body card-block">
                     <div class="form-group">
-                      <label for="company" class=" form-control-label">Foto Kategori</label>
-                      <input type="file" placeholder="Foto" accept="image/*">
+                      <label for="id_kategori">ID Kategori</label>
+                      <input type="text" id="id_kategori" name="id_kategori" placeholder="ID Kategori" class="form-control" readonly value="<?= $data2['id_kategori'] ?>">
                     </div>
                     <div class="form-group">
-                      <label for="company" class=" form-control-label">Nama Kategori</label>
-                      <input type="text" id="company" placeholder="Nama" class="form-control">
+                        <label for="nama_kategori">Nama Kategori</label>
+                        <input type="text" id="nama_kategori" name="nama_kategori" placeholder="Nama Kategori" class="form-control" value="<?= $data2['nama_kategori'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="tgambar">Foto Kategori</label>
+                        <input type="file" class="form-control-file" id="tgambar" name="tgambar">
                     </div>
 
                   </div>
@@ -404,13 +382,14 @@ if (!isset($_SESSION['email'])) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Tambah</button>
+                <button type="submit" class="btn btn-primary">Ubah</button>
               </div>
             </div>
           </div>
         </div>
-
-
+      </div>
+    </form>
+  <?php endwhile; ?>
 
 
         <!-- Scripts -->
