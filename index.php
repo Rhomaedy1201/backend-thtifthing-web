@@ -31,13 +31,14 @@ if (isset($_POST['submit'])) {
             if (md5($kata_sandi) === $hash) {
                 // Buat session jika kata_sandi sesuai
                 $_SESSION['email'] = $email;
-                $_SESSION['nama_lengkap'] = $nama_lengkap;
                 if ($status === "super admin") {
                     header("Location: tambah-kategori.php");
                     exit;
-                }else{
-                header("Location: dashboard.php");
+                }elseif ($status === "penjual") {
+                    header("Location: dashboard.php");
                 exit;
+                }else{
+                $error = "status user, tidak bisa login";
                 }
             } else {
                 // var_dump(md5($kata_sandi) === $hash);
