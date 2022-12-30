@@ -1,5 +1,5 @@
 <?php
-
+include 'connect.php';
 session_start();
 
 if (!isset($_SESSION['email'])) {
@@ -212,6 +212,12 @@ if (!isset($_SESSION['email'])) {
     </div>
     <!-- /#header -->
     <!-- Content -->
+    <?php 
+    $email = $_SESSION['email'];
+    $getId = mysqli_query($conn, "SELECT id_user FROM users WHERE email = '$email'");
+    $dataId = mysqli_fetch_array($getId);
+    $id_user = $dataId['id_user'];
+    ?>
     <div class="content">
       <!-- Animated -->
       <div class="animated fadeIn">
@@ -227,7 +233,15 @@ if (!isset($_SESSION['email'])) {
                   </div>
                   <div class="stat-content">
                     <div class="text-left dib">
-                      <div class="stat-text">RP<span class="count">300000</span></div>
+                      <div class="stat-text">RP<span class="count">
+                        
+                        <?php 
+                          $getPesanan = mysqli_query($conn, "SELECT SUM(total_pembayaran) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id_user'");
+                            $pesanan = mysqli_fetch_array($getPesanan);
+                            $int = intval($pesanan['SUM(total_pembayaran)']);
+                            echo $int;
+                         ?>
+                      </span></div>
                       <div class="stat-heading">Penghasilan</div>
                     </div>
                   </div>
@@ -245,7 +259,15 @@ if (!isset($_SESSION['email'])) {
                   </div>
                   <div class="stat-content">
                     <div class="text-left dib">
-                      <div class="stat-text"><span class="count">3435</span></div>
+                      <div class="stat-text"><span class="count">
+                        <?php 
+                          $getTransaksi = mysqli_query($conn, "SELECT COUNT(id_transaksi) FROM transaksi JOIN rekening_bank ON rekening_bank.id_rekening = transaksi.id_rekening WHERE id_user = '$id_user'");
+                          $terjual = mysqli_fetch_array($getTransaksi);
+                          echo $terjual['COUNT(id_transaksi)'];
+
+                         ?>
+
+                      </span></div>
                       <div class="stat-heading">Terjual</div>
                     </div>
                   </div>
@@ -263,7 +285,17 @@ if (!isset($_SESSION['email'])) {
                   </div>
                   <div class="stat-content">
                     <div class="text-left dib">
-                      <div class="stat-text"><span class="count">102</span></div>
+                      <div class="stat-text"><span class="count">
+
+                        <?php 
+
+                          $getProduk = mysqli_query($conn, "SELECT COUNT(id_produk) FROM produk_user WHERE id_user = '$id_user'");
+                          $produk = mysqli_fetch_array($getProduk);
+                          echo $produk['COUNT(id_produk)'];
+
+                         ?>
+
+                      </span></div>
                       <div class="stat-heading">Produk</div>
                     </div>
                   </div>
@@ -281,7 +313,16 @@ if (!isset($_SESSION['email'])) {
                   </div>
                   <div class="stat-content">
                     <div class="text-left dib">
-                      <div class="stat-text"><span>2 Bank</span></div>
+                      <div class="stat-text"><span>
+                        <?php 
+
+                          $getBank = mysqli_query($conn, "SELECT COUNT(id_rekening) FROM rekening_bank join users on rekening_bank.id_user = users.id_user WHERE rekening_bank.id_user = '$id_user'");
+                          $bank = mysqli_fetch_array($getBank);
+                          echo $bank['COUNT(id_rekening)'];
+
+                         ?>
+
+                       Bank</span></div>
                       <div class="stat-heading">Terdaftar</div>
                     </div>
                   </div>
@@ -293,79 +334,21 @@ if (!isset($_SESSION['email'])) {
           <div class="content">
             <div class="animated fadeIn">
               <div class="row">
+                <?php 
+                  $sql = mysqli_query($conn, "SELECT nama_produk, harga, gambar FROM `produk_user` join users on produk_user.id_user = users.id_user WHERE produk_user.id_user = '$id_user' ORDER BY id_produk DESC");
+                  while ($data = mysqli_fetch_array($sql)):
 
+                 ?>
                 <div class="col-md-4">
                   <div class="card">
-                    <img class="card-img-top" src="images/Capture.PNG" alt="Card image cap">
+                    <?='<img class="card-img-top" src="data:image/png;base64,' . base64_encode($data['gambar']) . '" alt="Card image cap">' ?>
                     <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Kaos Godspeed</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>300.000</div>
+                      <h5 class="text-sm-center mt-2 mb-1"><?= $data['nama_produk'] ?></h5>
+                      <div class="location text-sm-center"><i class="fa fa-dollar"></i><?= $data['harga'] ?></div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture2.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Jaket Godspeed Motif</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>400.000</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Kaos Godspeed Polos</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>200.000</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture2.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Jaket Godspeed Polos</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>200.000</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture2.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Jaket Godspeed Polos</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>200.000</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Kaos Godspeed</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>300.000</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture2.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Jaket Godspeed</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>300.000</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="images/Capture3.PNG" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="text-sm-center mt-2 mb-1">Topi Godspeed Motif</h5>
-                      <div class="location text-sm-center"><i class="fa fa-dollar"></i>400.000</div>
-                    </div>
-                  </div>
-                </div>
+                <?php endwhile; ?>
 
 
               </div><!-- .row -->
