@@ -27,7 +27,7 @@
                             <a href="#" class="menu__link active">Home</a>
                         </li>
                         <li class="menu__item">
-                            <a href="#" class="menu__link">Product</a>
+                            <a href="#cervices" class="menu__link">Fitur</a>
                         </li>
                         <li class="menu__item">
                             <a href="#caraKerja" class="menu__link">Cara Kerja</a>
@@ -70,42 +70,41 @@
             </div>
         </section>
 
-        <section class="opportunities">
+        <section class="opportunities" id="cervices">
             <div class="opportunities__img">
                 <img src="assets/img/leaf.png" alt="">
             </div>
             <div class="opportunities__content w-105">
                 <div class="opportunities__head">
-                    <h2 class="opportunities__title">Opportunitas Aplikasi</h2>
-                    <p class="opportunities__description">We are the first and the only crowdfunding platform enabling
-                        you to help finance our farmers.</p>
+                    <h2 class="opportunities__title">Fitur Unggulan</h2>
+                    <p class="opportunities__description">Inilah Beberapa fitur unggulan di aplikasi Go-Thrift</p>
                 </div>
                 <div class="opportunities__body">
                     <div class="opportunity">
-                        <img src="assets/img/opportunites/opportunity-1.svg" alt="Icon" class="opportunity__icon">
-                        <h4 class="opportunity__title">Connect with our farmers</h4>
-                        <p class="opportunity__description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                            odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                        <img src="assets/img/opportunites/category.svg" alt="Icon" class="opportunity__icon">
+                        <h4 class="opportunity__title">Kategori</h4>
+                        <p class="opportunity__description">Kategori pada aplikasi ini terdapat kategori pakaian-pakaian
+                            bekas seperti Kaos, Kemeja, Jaket, Celana, Topi dan lain-lain.
                         </p>
                     </div>
 
                     <div class="opportunity active">
-                        <img src="assets/img/opportunites/opportunity-2.svg" alt="Icon" class="opportunity__icon">
-                        <h4 class="opportunity__title">Grow your business</h4>
+                        <img src="assets/img/opportunites/payment.svg" alt="Icon" class="opportunity__icon">
+                        <h4 class="opportunity__title">Pembayaran</h4>
                         <p class="opportunity__description">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                            architecto beatae vitae dicta sunt explicabo.
+                            Pada metode pembayaran ini sudah bisa menggunakan metode pembayaran melalu Bank Seperi BRI,
+                            BCA, BNI, dan lain-lain, dalam pembayaran ini pembeli bisa transfer ke rekening yang tertera
+                            pada pembyaran tersebut dan jika sudah transfer pembeli diwajibkan utuk upload bukti
+                            pembayaran / transfer.
                         </p>
                     </div>
                     <div class="opportunity">
-                        <img src="assets/img/opportunites/opportunity-3.svg" alt="Icon" class="opportunity__icon">
-                        <h4 class="opportunity__title">Social Impact Invesment
+                        <img src="assets/img/opportunites/delivery.svg" alt="Icon" class="opportunity__icon">
+                        <h4 class="opportunity__title">Cek Pengiriman / Delivery
                         </h4>
                         <p class="opportunity__description">
-                            At vero eos et accusamus et iusto odio praesentium atque corrupti quos dolores et quas
-                            molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
-                            officia deserunt mollitia
+                            Dalam metode cek pengiriman ini sudah bisa melakukan cek pengiriman atau rute paket, jika
+                            barang sudah dikirim oleh si penjual.
                         </p>
                     </div>
                 </div>
@@ -180,7 +179,8 @@
                             <a href="https://rhomaedi.netlify.app/">
                                 <div class="testimonial__profile">
                                     <div class="testimonial__img">
-                                        <img src="assets/img/testimonials/1.png" alt="Testimonial">
+                                        <img width="100px" height="100px" src="assets/img/testimonials/edi.jpeg"
+                                            alt="Testimonial">
                                     </div>
                                     <div class="testimonial__info">
                                         <h4 class="testimonial__name"> Muhammad Rhomaedi</h4>
@@ -198,16 +198,18 @@
                             <a href="#">
                                 <div class="testimonial__profile">
                                     <div class="testimonial__img">
-                                        <img src="assets/img/testimonials/3.png" alt="Testimonial">
+                                        <img width="100px" height="100px" src="assets/img/testimonials/adhe.jpeg"
+                                            alt="Testimonial">
                                     </div>
                                     <div class="testimonial__info">
                                         <h4 class="testimonial__name"> Adhe Wahyu </h4>
-                                        <h4 class="testimonial__title">Web Developer</h4>
+                                        <h4 class="testimonial__title">Project Manager & Web Developer</h4>
                                     </div>
                                 </div>
                                 <p class="testimonial__description">
-                                    “ Saya Berpengalaman dalam Pemengembangan Aplikasi berbasis mobile 1th++, dan saat
-                                    ini saya masih mengembangkan aplikasi mobile Go-Thrift “
+                                    “ Memang bagi saya dunia programes masih awam dan masih dunia baru tetapi saya tidak
+                                    ingin menyerah begitu saja untuk bisa bangkit dan bisa menjalaninya, setiap
+                                    rintangan pasti ada jalan keluarnya dan setiap masalah pasti ada penyelesainnya “
                                 </p>
                             </a>
                         </div>
@@ -216,7 +218,8 @@
                             <a href="#">
                                 <div class="testimonial__profile">
                                     <div class="testimonial__img">
-                                        <img src="assets/img/testimonials/1.png" alt="Testimonial">
+                                        <img width="100px" height="100px" src="assets/img/testimonials/akbar.jpeg"
+                                            alt="Testimonial">
                                     </div>
                                     <div class="testimonial__info">
                                         <h4 class="testimonial__name"> Akbar Firmansyah </h4>
@@ -234,20 +237,20 @@
                             <a href="#">
                                 <div class="testimonial__profile">
                                     <div class="testimonial__img">
-                                        <img src="assets/img/testimonials/2.png" alt="Testimonial">
+                                        <img width="150px" height="100px" src="assets/img/testimonials/ima.jpeg"
+                                            alt="Testimonial">
                                     </div>
                                     <div class="testimonial__info">
-                                        <h4 class="testimonial__name"> Ima </h4>
+                                        <h4 class="testimonial__name"> Nurfatimah </h4>
                                         <h4 class="testimonial__title">QA / Quality Assurance</h4>
                                     </div>
                                 </div>
                                 <p class="testimonial__description">
-                                    “ Saya Berpengalaman dalam Pemengembangan Aplikasi berbasis mobile 1th++, dan saat
-                                    ini saya masih mengembangkan aplikasi mobile Go-Thrift “
+                                    “ Saat ini saya tergabung dalam sebuah project pengembangan aplikasi GoThrift. Peran
+                                    saya dalam project ini adalah sebagai QA dalam pengembangan aplikasi GoThrift “
                                 </p>
                             </a>
                         </div>
-
 
                     </div>
                 </div>

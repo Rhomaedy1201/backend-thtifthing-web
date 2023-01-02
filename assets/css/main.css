@@ -671,6 +671,10 @@ header {
   position: relative;
 }
 
+/* .testimonial .testimonial__profile .testimonial__img img {
+  border-radius: 20%;
+} */
+
 .testimonials__body::before,
 .testimonials__body::after {
   position: absolute;
