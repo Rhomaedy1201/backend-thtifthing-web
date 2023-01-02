@@ -227,8 +227,7 @@
                                     </div>
                                 </div>
                                 <p class="testimonial__description">
-                                    “ Saya Berpengalaman dalam Pemengembangan Aplikasi berbasis mobile 1th++, dan saat
-                                    ini saya masih mengembangkan aplikasi mobile Go-Thrift “
+                                    “ Saya disini sebagai Web Developer untuk pengembangan Website Go-Thrift “
                                 </p>
                             </a>
                         </div>
