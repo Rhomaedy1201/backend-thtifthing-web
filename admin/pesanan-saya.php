@@ -344,7 +344,7 @@ session_start();
     <!-- Modal -->
     <?php
     $sql = mysqli_query($conn, "SELECT transaksi.id_transaksi,transaksi.id_alamat_user, transaksi.status, bukti_pembayaran,no_resi, harga_pengiriman, nama_pengiriman, detail_jalan, 
-                              detail_patokan, provinsi, kota, kode_pos
+                              detail_patokan, provinsi, no_resi, kota, kode_pos
                               FROM detail_alamat_user INNER JOIN transaksi INNER JOIN metode_pengiriman 
                               ON detail_alamat_user.id_alamat_user = transaksi.id_alamat_user 
                               AND transaksi.id_pengiriman = metode_pengiriman.id_pengiriman");
@@ -391,20 +391,29 @@ session_start();
                             <?= $data3['nama_pengiriman'] ?>
                           </td>
                           <td class="align-top">Rp<?= $data3['harga_pengiriman'] ?></td>
-                          <td class="align-top">JT0923873666</td>
+                          <td class="align-top"><?php $data3['no_resi'] ?></td>
                           <td class="align-top">
                             <?='<img src="data:image/png;base64,' . base64_encode($data3['bukti_pembayaran']) . '">' ?>
                           </td>
                           <?php
-                          if ($data3['status'] == "belum dibayar") {
+                          if ($data3['status'] == "Belum dibayar" || $data3['status'] == "Belum Dibayar") {
 
                           } elseif ($data3['status'] == "Diproses") {
                             ?>
                             <td class="align-top">
                               <a href="update_resi.php?id=<?= $data3['id_transaksi'] ?>" id="btn-update-resi"
                                 class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i>&nbsp;
+                                Proses</a>
+                            </td>
+                          <?php }else{ ?>
+
+                              <td class="align-top">
+                              <a href="" id="btn-update-resi"
+                                data-toggle="modal" data-target="#updateResi<?=$data3['id_transaksi'] ?>"
+                                class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i>&nbsp;
                                 Update Resi</a>
                             </td>
+
                             <?php } ?>
                         </tr>
                       </table>
@@ -427,7 +436,51 @@ session_start();
       <?php endwhile; ?>
 
   </div>
+<?php 
+$sql = mysqli_query($conn, "SELECT id_transaksi, no_resi FROM transaksi");
 
+    while ($data4 = mysqli_fetch_array($sql)):
+ ?>
+  <div class="modal fade" id="updateResi<?= $data4['id_transaksi'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Tambah Kategori</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="post" action="update_no_resi.php?id=<?= $data4['id_transaksi'] ?>" enctype="multipart/form-data">
+            <div class="modal-body">
+
+              <!-- Form -->
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header"></div>
+                  <div class="card-body card-block">
+
+
+                    <div class="form-group">
+                      <label for="company" class=" form-control-label">NO RESI</label>
+                      <input type="text" id="company" name="no_resi" placeholder="Nama" class="form-control">
+                    </div>
+
+                  </div>
+                </div>
+                <!-- END FORM -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<?php endwhile; ?>
   <!-- modals script -->
   <script>
     function disableBtn() {
